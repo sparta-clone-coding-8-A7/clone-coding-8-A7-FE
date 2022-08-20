@@ -38,7 +38,7 @@ export const __uploadFile = createAsyncThunk(
 
 export const fileUploadSlice = createSlice({
   name: "fileUploadSlice",
-  initialState,
+  initialState: initialState,
   reducers: {},
   extraReducers: {
     [__uploadFile.pending]: (state, action) => {
