@@ -17,7 +17,7 @@ const Header = () => {
       <div className='header-content'>
         <nav className='nav-bar'>
           <div className='right-content'>
-            <img src={hamburger}></img>
+            <img className='logo' src={hamburger}></img>
             <div className='wanted'>wanted</div>
           </div>
           <ul className='center-content'>
@@ -28,7 +28,7 @@ const Header = () => {
           </ul>
           <div className='left-content'>
             <ul className='left-tag'>
-              <li className='left-tags'><a href='/'><img src={magnifier}></img></a></li>
+              <li className='left-tags'><a href='/'><img className='magnifier' src={magnifier}></img></a></li>
               <li className='left-tags'><a href='/'>회원가입/로그인</a></li>
               <li className='left-tags'><a href='/'><button className='anchor'>기업 서비스</button></a></li>
             </ul>

@@ -21,7 +21,7 @@
             flex-wrap: wrap;
             .right-content{
                 display: flex;
-                img{
+                .logo{
                     width: 17px;
                     height: 14px;
                     object-fit: contain;
@@ -33,7 +33,7 @@
                     font-size: 22px;
                     font-weight: bold;
                     cursor: pointer;
-                    padding: 15px;
+                    padding: 14px;
                 }
             }
             .center-content{
@@ -73,7 +73,7 @@
                     display: flex;
                     height: 100%;
                     margin: 0;
-                    margin-top: 3px;
+                    margin-top: 10px;
                     .left-tags{
                         position: relative;
                         display: inline-block;
@@ -93,11 +93,11 @@
                                 line-height: 30px;
                                 padding: 0 10px;
                                 font-weight: 400;
-                                border: 1px solid #666;
+                                border: 1px solid #e1e2e3;
                                 cursor: pointer;
                             }
-                            img{
-                                margin-top: 4px;
+                            .magnifier{
+                                margin-top: 2px;
                                 width: 22px;
                             }
                         }
