@@ -7,6 +7,8 @@ const JobApplyCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
+  // const user = useSelector((state) => state.userInfoSlice.user);
+
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
@@ -23,7 +25,23 @@ const JobApplyCard = () => {
 
   return (
     <div className="jobApplyCard_Container">
-      <div className="jobApplyCard_Container__userContainer"></div>
+      <div className="jobApplyCard_Container__userContainer">
+        <h3>지원자 정보</h3>
+        <label
+          for="name"
+          class="jobApplyCard_Container__userContainer__username">
+          <h4>이름</h4>
+          <div className="jobApplyCard_Container__userContainer__username__name">
+            profile_nickname
+          </div>
+        </label>
+        <label for="name" class="jobApplyCard_Container__userContainer__email">
+          <h4>이메일</h4>
+          <div className="jobApplyCard_Container__userContainer__email__account">
+            account_email
+          </div>
+        </label>
+      </div>
       <div className="jobApplyCard_Container__fileContainer">
         <form onSubmit={handleSubmit}>
           <input

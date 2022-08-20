@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 import React from "react";
 import JobSwiperCard from "../components/detail/JobSwiperCard";
 import JobApplyCard from "../components/detail/JobApplyCard";
