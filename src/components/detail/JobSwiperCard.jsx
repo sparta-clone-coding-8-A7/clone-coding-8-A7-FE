@@ -18,6 +18,11 @@ const JobSwiperCard = () => {
     },
     { image: require("../../assets/random2.png") },
     { image: require("../../assets/random1.png") },
+    {
+      image: require("../../assets/random1.png"),
+    },
+    { image: require("../../assets/random2.png") },
+    { image: require("../../assets/random1.png") },
   ];
 
   console.log(images);
