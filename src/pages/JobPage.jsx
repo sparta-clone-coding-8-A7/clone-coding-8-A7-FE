@@ -1,10 +1,11 @@
 import React from "react";
-import JobImageCard from "../components/detail/JobImageCard";
+import JobSwiperCard from "../components/detail/JobSwiperCard";
+import "../assets/JobPage.scss";
 
 const JobPage = () => {
   return (
-    <div>
-      <JobImageCard />
+    <div className="jobPage_Container">
+      <JobSwiperCard />
     </div>
   );
 };
