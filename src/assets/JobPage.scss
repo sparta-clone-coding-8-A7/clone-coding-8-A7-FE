@@ -1,7 +1,7 @@
 .jobPage_Container {
   max-width: 1060px;
   height: 100vh;
-  background-color: blue;
+  // background-color: blue;
   position: relative;
   margin: 100px auto;
   padding: 20px 0 80px;
@@ -12,11 +12,8 @@
   }
   .jobDetailRight {
     top: 120px;
-    border: 1px solid black;
-    width: 340px;
     position: fixed;
     right: calc((100% - 1060px) / 2);
-    height: 200px;
   }
 }
 
