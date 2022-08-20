@@ -1,3 +1,14 @@
 .jobPage_Container {
-  margin-top: 100px;
+  max-width: 1060px;
+  height: 100vh;
+  background-color: blue;
+  position: relative;
+  margin: 100px auto;
+  padding: 20px 0 80px;
+}
+
+@media (min-width: 1200px) {
+  .jobPage_Container {
+    width: 87.72%;
+  }
 }
