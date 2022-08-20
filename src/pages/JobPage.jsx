@@ -9,9 +9,9 @@ const JobPage = () => {
       <div className="jobDetailLeft">
         <JobSwiperCard />
       </div>
-      <div className="jobDetailRight">
+      {/* <div className="jobDetailRight">
         <JobApplyCard />
-      </div>
+      </div> */}
     </div>
   );
 };

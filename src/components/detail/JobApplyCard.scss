@@ -36,6 +36,14 @@
   }
 }
 
+@media (max-width: 767px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .jobApplyCard_Container {
+  }
+}
+
 @media (min-width: 1200px) {
   .jobApplyCard_Container {
     width: 340px;

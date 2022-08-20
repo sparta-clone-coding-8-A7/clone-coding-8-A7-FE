@@ -8,6 +8,8 @@
   // overflow-x: auto;
   // scroll-snap-type: x mandatory;
   // overscroll-behavior: contain;
+  position: relative;
+  overflow: hidden;
 }
 .image img {
   width: 100%;
