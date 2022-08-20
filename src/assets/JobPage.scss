@@ -24,13 +24,24 @@
     background: #fff;
     margin-top: 70px;
   }
+  .jobDetailRight {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
 }
 
 @media (max-width: 767px) {
   .jobPage_Container {
     margin-top: 70px;
   }
+  .jobDetailRight {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
 }
+
 @media (min-width: 1200px) {
   .jobPage_Container {
     width: 87.72%;
