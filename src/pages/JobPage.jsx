@@ -6,8 +6,12 @@ import "../assets/JobPage.scss";
 const JobPage = () => {
   return (
     <div className="jobPage_Container">
-      <JobSwiperCard />
-      <JobApplyCard />
+      <div className="jobDetailLeft">
+        <JobSwiperCard />
+      </div>
+      <div className="jobDetailRight">
+        <JobApplyCard />
+      </div>
     </div>
   );
 };

@@ -5,6 +5,19 @@
   position: relative;
   margin: 100px auto;
   padding: 20px 0 80px;
+  .jobDetailLeft {
+    display: inline-block;
+    width: calc(100% - 360px);
+    vertical-align: top;
+  }
+  .jobDetailRight {
+    top: 120px;
+    border: 1px solid black;
+    width: 340px;
+    position: fixed;
+    right: calc((100% - 1060px) / 2);
+    height: 200px;
+  }
 }
 
 @media (min-width: 1200px) {
