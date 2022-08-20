@@ -47,7 +47,6 @@ export const fileUploadSlice = createSlice({
     [__uploadFile.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.files = action.payload;
-      // console.log(action.payload.data.comments);
     },
     [__uploadFile.rejected]: (state, action) => {
       state.isLoading = false;
