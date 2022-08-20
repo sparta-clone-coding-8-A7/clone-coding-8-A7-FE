@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./JobApplyCard.scss";
 import { __uploadFile } from "../../redux/modules/uploadFileSlice";
 
@@ -23,16 +23,17 @@ const JobApplyCard = () => {
 
   return (
     <div className="jobApplyCard_Container">
-      <div className="jobApplyCard_Container__buttonContainer">
+      <div className="jobApplyCard_Container__userContainer"></div>
+      <div className="jobApplyCard_Container__fileContainer">
         <form onSubmit={handleSubmit}>
           <input
             type="file"
             name="file"
             onChange={handleFileSelect}
-            className="jobApplyCard_Container__buttonContainer__file"
+            className="jobApplyCard_Container__fileContainer__file"
           />
           {isFilePicked ? (
-            <div className="jobApplyCard_Container__buttonContainer__desc">
+            <div className="jobApplyCard_Container__fileContainer__desc">
               <p>파일명: {selectedFile.name}</p>
               <p>파일종류: {selectedFile.type}</p>
               <p>파일크기: {selectedFile.size}</p>
@@ -48,7 +49,7 @@ const JobApplyCard = () => {
             </p>
           )}
           <input
-            className="jobApplyCard_Container__buttonContainer__button"
+            className="jobApplyCard_Container__fileContainer__button"
             type="submit"
             value="지원하기"
           />
