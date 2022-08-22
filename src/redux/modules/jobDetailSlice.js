@@ -13,18 +13,50 @@ import axios from "axios";
 
 // let config = {
 //   headers: {
+//     "Content-Type": "multipart/form-data",
 //     Authorization: userToken,
-//     refreshToken: refreshToken,
+//     RefreshToken: refreshToken,
 //   },
 // };
 
 const initialState = {
   user: {
-    usrname: "",
+    username: "",
     email: "",
     fileUpload: "",
   },
+  file: [],
 };
+
+export const __uploadFile = createAsyncThunk(
+  // action type string
+  "detail/__uploadFile",
+  // callback function
+  async (payload, thunkAPI) => {
+    try {
+      const formData = payload;
+      // configure header's Content-Type as mulipart/form-data
+      // const config = {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // };
+      // make request to backend
+      const response = await axios.post(
+        "/api/jobpost/file",
+        // 추후 url 추가
+        // 보내는 방식이 맞는지 (성우님과 성의)
+        {
+          data: formData,
+        }
+        // config
+      );
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const __getUserInfo = createAsyncThunk(
   // action type string
@@ -56,11 +88,23 @@ export const __getUserInfo = createAsyncThunk(
   }
 );
 
-export const userInfoSlice = createSlice({
-  name: "userInfoSlice",
+export const jobDetailSlice = createSlice({
+  name: "jobDetailSlice",
   initialState: initialState,
   reducers: {},
   extraReducers: {
+    [__uploadFile.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__uploadFile.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.file = action.payload;
+    },
+    [__uploadFile.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.file = [];
+      state.err = action.payload;
+    },
     [__getUserInfo.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -76,5 +120,5 @@ export const userInfoSlice = createSlice({
   },
 });
 
-// export const {} = commentSlice.actions;
-export default userInfoSlice.reducer;
+// export const {} = jobDetailSlice.actions;
+export default jobDetailSlice.reducer;

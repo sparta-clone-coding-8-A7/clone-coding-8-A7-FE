@@ -2,12 +2,10 @@
 
 import logger from "redux-logger";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import uploadFileSlice from "../modules/uploadFileSlice";
-import userInfoSlice from "../modules/useInfoSlice";
+import jobDetailSlice from "../modules/jobDetailSlice";
 
 const reducer = combineReducers({
-  uploadFileSlice,
-  userInfoSlice,
+  jobDetailSlice,
 });
 
 const store = configureStore({

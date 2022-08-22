@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./JobApplyCard.scss";
-import { __uploadFile } from "../../redux/modules/uploadFileSlice";
+import { __uploadFile } from "../../redux/modules/jobDetailSlice";
 
 const JobApplyCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
