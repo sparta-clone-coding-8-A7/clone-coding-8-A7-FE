@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import "./JobApplyCard.scss";
+import "./JobResumeCard.scss";
 
 import { __uploadFile } from "../../redux/modules/jobDetailSlice";
 import JobDetailLike from "../like/JobDetailLike";
 
-const JobApplyCard = () => {
+const JobResumeCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
@@ -81,4 +81,4 @@ const JobApplyCard = () => {
   );
 };
 
-export default JobApplyCard;
+export default JobResumeCard;
