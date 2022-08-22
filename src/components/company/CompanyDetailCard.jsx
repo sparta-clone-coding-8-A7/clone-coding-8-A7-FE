@@ -9,11 +9,18 @@ import { __getCompanyDetail } from "../../redux/modules/jobDetailSlice";
 import "./CompanyDetailCard.scss";
 
 const CompanyDetailCard = () => {
-  // const company = useSelector((state) => state.jobDetailSlice.companyDetail);
+  const companies = useSelector((state) => state.jobDetailSlice.companyDetail);
+  // const success = useSelector((state) => state.jobDetailSlice.success);
+  console.log(companies);
+  // console.log(success);
 
   const { id } = useParams();
 
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(__getCompanyDetail(id));
+  // }, [dispatch, success]);
 
   useEffect(() => {
     dispatch(__getCompanyDetail(id));
@@ -21,32 +28,28 @@ const CompanyDetailCard = () => {
 
   return (
     <div className="companyDetailCard__Container">
-      <h2>포지션 이름</h2>
+      <h2>{companies.position}</h2>
       <div className="companyDetailCard__Container__location">
-        <span>회사지역</span>
+        <span>{companies.location}</span>
       </div>
       <div className="companyDetailCard__Container__company">
         <h6>회사소개</h6>
-        <p>항해99</p>
+        <p>{companies.name}</p>
         <h6>마감일</h6>
-        <p>2022년 10월4일</p>
+        <p>{companies.deadline}</p>
         <h6>기술스택</h6>
-        <p>
-          <div className="companyDetailCard__Container__stackList">
-            <div className="companyDetailCard__Container__stackList__skill">
-              HTML
-            </div>
-            <div className="companyDetailCard__Container__stackList__skill">
-              CSS
-            </div>
-            <div className="companyDetailCard__Container__stackList__skill">
-              JAVASCRIPT
-            </div>
-            <div className="companyDetailCard__Container__stackList__skill">
-              REACT
-            </div>
-          </div>
-        </p>
+        {companies.stack &&
+          companies.stack.map((company) => {
+            return (
+              <div
+                className="companyDetailCard__Container__stackList"
+                key={company.id}>
+                <div className="companyDetailCard__Container__stackList__skill">
+                  {company}
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

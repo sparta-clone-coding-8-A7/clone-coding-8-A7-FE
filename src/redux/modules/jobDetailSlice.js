@@ -121,18 +121,21 @@ export const __getCompanyDetail = createAsyncThunk(
   "detail/__getCompanyDetail",
   async (payload, thunkAPI) => {
     try {
-      const jobPostId = payload.id;
+      // const jobPostId = payload;
       const headers = {
         "Content-Type": "application/json",
         // Authorization: `${Authorization}`,
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.get(
-        `/api/jobPost/${jobPostId}`,
+        // `/api/jobPost/${jobPostId}`,
+        "https://run.mocky.io/v3/f4c19d08-9891-4df3-8516-b81076b98b32",
         {},
         { headers: headers }
       );
+      console.log(response.data);
       return thunkAPI.fulfillWithValue(response.data);
+      // return thunkAPI.fulfillWithValue(response.data.id);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -185,6 +188,7 @@ export const jobDetailSlice = createSlice({
     [__getCompanyDetail.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.companyDetail = action.payload;
+      // state.success = action.payload;
     },
     [__getCompanyDetail.rejected]: (state, action) => {
       state.isLoading = false;

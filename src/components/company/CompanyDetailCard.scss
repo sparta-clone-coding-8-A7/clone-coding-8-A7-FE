@@ -24,11 +24,12 @@
     }
   }
   &__stackList {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     grid-gap: 10px 8px;
     gap: 10px 8px;
     margin-top: 5px;
+    margin-right: 5px;
     &__skill {
       background-color: #e4f4ec;
       border-radius: 20px;

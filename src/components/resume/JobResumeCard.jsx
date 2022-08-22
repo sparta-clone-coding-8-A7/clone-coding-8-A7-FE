@@ -33,14 +33,16 @@ const JobResumeCard = () => {
       <div className="jobApplyCard_Container__userContainer">
         <h3>지원자 정보</h3>
         <label
-          for="name"
-          class="jobApplyCard_Container__userContainer__username">
+          htmlFor="name"
+          className="jobApplyCard_Container__userContainer__username">
           <h4>이름</h4>
           <div className="jobApplyCard_Container__userContainer__username__name">
             profile_nickname
           </div>
         </label>
-        <label for="name" class="jobApplyCard_Container__userContainer__email">
+        <label
+          htmlFor="name"
+          className="jobApplyCard_Container__userContainer__email">
           <h4>이메일</h4>
           <div className="jobApplyCard_Container__userContainer__email__account">
             account_email
