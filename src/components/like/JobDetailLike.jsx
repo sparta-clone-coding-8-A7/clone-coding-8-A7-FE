@@ -8,24 +8,26 @@ import { useDispatch } from "react-redux";
 const JobDetailLike = () => {
   // const { postId } = useParams();
   const dispatch = useDispatch();
-  const [clikedLike, setClickedLike] = useState(false);
+  const [clickedLike, setClickedLike] = useState(false);
 
   const toggleLike = () => {
-    setClickedLike(!clikedLike);
+    setClickedLike(!clickedLike);
   };
 
   // useEffect(() => {
   //   dispatch(__getPost(postId));
   // }, [dispatch, postId, isLike]);
-  // const isLike = useSelector((state) => state.jobDetailSlice.)
-  // const likeNumber = useSelector((state) => state.jobDetailSlice.)
+
+  // const isLike = useSelector((state) => state.jobDetailSlice.like);
+  // const likeNumber = useSelector((state) => state.jobDetailSlice.like_num);
+
   // const onisLike = async() => {
   //   dispatch(__toggleLike(postId))
   // }
 
   return (
     <div className="jobDetailLike__Container">
-      {clikedLike ? (
+      {clickedLike ? (
         <img
           className="jobDetailLike__Container__likeHeart"
           onClick={toggleLike}

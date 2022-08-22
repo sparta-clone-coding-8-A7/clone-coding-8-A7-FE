@@ -93,9 +93,10 @@ export const __getUserInfo = createAsyncThunk(
 );
 
 export const __toggleLike = createAsyncThunk(
-  "detail/__toggleLike",
+  "like/__toggleLike",
   async (postId, thunkAPI) => {
     try {
+      const jobPostId = postId;
       // const Refreshtoken = localStorage.getItem('refreshToken');
       // const Authorization = localStorage.getItem('authorization');
       const headers = {
@@ -104,7 +105,7 @@ export const __toggleLike = createAsyncThunk(
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.post(
-        `/api/jobpost/${postId}/heart`,
+        `/api/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
