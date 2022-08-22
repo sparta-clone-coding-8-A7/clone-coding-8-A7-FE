@@ -30,7 +30,7 @@ const Header = () => {
             <ul className='left-tag'>
               <li className='left-tags'><a href='/'><img className='magnifier' src={magnifier}></img></a></li>
               <li className='left-tags'><a href='/'>회원가입/로그인</a></li>
-              <li className='left-tags'><a href='/'><button className='anchor'>기업 서비스</button></a></li>
+              <li className='left-btn'><a href='/'><button className='anchor'>기업 서비스</button></a></li>
             </ul>
           </div>
         </nav>

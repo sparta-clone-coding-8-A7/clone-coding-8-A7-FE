@@ -1,0 +1,52 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.card-item{
+    text-decoration: none;
+    color: black;
+    border-radius: 4px;
+    margin-bottom: 60px;
+    width: 250px;
+    img{
+        border-radius: 4px;
+        width: 250px;
+        height: 200px;
+        margin-bottom: 8px
+    }
+    .card-title{
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+    .card-company{
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .company-region{
+        color: #999;
+        line-height: normal;
+        font-size: 14px;
+        margin-bottom: 5px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    .company-pay{
+        margin-top: 10px;
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+        word-break: break-word;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+}

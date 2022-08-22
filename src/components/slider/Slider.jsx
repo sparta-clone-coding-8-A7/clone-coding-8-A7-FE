@@ -1,10 +1,13 @@
-import React from 'react'
-import Slider from "react-slick";
-import logo from "../../assets/bookshelf.png"
-import "../../../node_modules/slick-carousel/slick/slick.css";
-import "../../../node_modules/slick-carousel/slick/slick-theme.css";
-import "./Slider.scss"
-import log from "../../assets/optimize1.webp"
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/scss";
+import "swiper/scss/pagination";
+import "swiper/scss/navigation";
+import "./Slider.scss";
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from "swiper";
+
 
 const imgDir = [{
     image: "../../assets/optimize1.webp"
@@ -20,26 +23,30 @@ const imgDir = [{
   }
 ]
 const Slidercard = () => {
-  const settings = {
-    autoplaySpeed:5000,
-    autoplay:true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    useCSS:true,
-  };
+  
   return (
     <div className='slider'>
-      <h2> Single Item</h2>
-        <Slider {...settings}>
-          {imgDir.map((img,index)=>{
-            return(
-            <div key={index}>
-              <img className='items-view' src={img.image}></img>
-            </div>
-            )
-          })}
-        </Slider>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper">
+            {imgDir.map((img,index)=>{
+              return(
+                <SwiperSlide key={index}>
+                  <img className='items-view' src={img.image}></img>          
+                </SwiperSlide>
+              )
+            })}
+        </Swiper>
     </div>
   )
 }
