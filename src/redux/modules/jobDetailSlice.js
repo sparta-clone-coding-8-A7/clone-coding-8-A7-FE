@@ -20,11 +20,7 @@ import axios from "axios";
 // };
 
 const initialState = {
-  user: {
-    // username: "",
-    // email: "",
-    // fileUpload: "",
-  },
+  user: {},
   file: [],
   companyDetail: [],
   dataLike: true,
@@ -77,15 +73,17 @@ export const __getUserInfo = createAsyncThunk(
       //   },
       // };
       // make request to backend
-      const { data } = await axios.get(
-        "/api/user/kakaoLogin"
+      const response = await axios.get(
+        // "/api/user/kakaoLogin"
+        "https://run.mocky.io/v3/1ddd8034-8e73-4fa4-8b9d-39b7f8303719"
         // 추후 url 추가
         // {
         //   data: formData,
         // },
         // config
       );
-      return thunkAPI.fulfillWithValue(data.data);
+      console.log(response.data);
+      return thunkAPI.fulfillWithValue(response.data);
       // console.log(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,18 +1,21 @@
 // eslint-disable-next-line
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./JobResumeCard.scss";
 
 import { __uploadFile } from "../../redux/modules/jobDetailSlice";
+import { __getUserInfo } from "../../redux/modules/jobDetailSlice";
+
 import JobDetailLike from "../like/JobDetailLike";
 
 const JobResumeCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
-  // const user = useSelector((state) => state.jobDetailSlice.user);
+  const user = useSelector((state) => state.jobDetailSlice.user);
+  console.log(user);
 
   const dispatch = useDispatch();
 
@@ -28,6 +31,10 @@ const JobResumeCard = () => {
     setIsFilePicked(true);
   };
 
+  useEffect(() => {
+    dispatch(__getUserInfo());
+  }, []);
+
   return (
     <div className="jobApplyCard_Container">
       <div className="jobApplyCard_Container__userContainer">
@@ -37,7 +44,7 @@ const JobResumeCard = () => {
           className="jobApplyCard_Container__userContainer__username">
           <h4>이름</h4>
           <div className="jobApplyCard_Container__userContainer__username__name">
-            profile_nickname
+            {user.username}
           </div>
         </label>
         <label
@@ -45,7 +52,7 @@ const JobResumeCard = () => {
           className="jobApplyCard_Container__userContainer__email">
           <h4>이메일</h4>
           <div className="jobApplyCard_Container__userContainer__email__account">
-            account_email
+            {user.email}
           </div>
         </label>
       </div>

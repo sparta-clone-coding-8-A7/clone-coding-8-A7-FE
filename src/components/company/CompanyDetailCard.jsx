@@ -39,11 +39,9 @@ const CompanyDetailCard = () => {
         <p>{companies.deadline}</p>
         <h6>기술스택</h6>
         {companies.stack &&
-          companies.stack.map((company) => {
+          companies.stack.map((company, i) => {
             return (
-              <div
-                className="companyDetailCard__Container__stackList"
-                key={company.id}>
+              <div className="companyDetailCard__Container__stackList" key={i}>
                 <div className="companyDetailCard__Container__stackList__skill">
                   {company}
                 </div>
