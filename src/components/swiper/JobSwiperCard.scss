@@ -1,0 +1,13 @@
+.imageSwiperContainer {
+  position: relative;
+  overflow: hidden;
+}
+.image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  outline: 1px solid rgba(0, 0, 0, 0.05);
+  outline-offset: -1px;
+}

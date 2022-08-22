@@ -9,7 +9,7 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path={"/"} element={<MainPage></MainPage>}></Route>
-          <Route path={"/jobseeker"} element={<JobPage />}></Route>
+          <Route path={"/jobpost/:jobPostId"} element={<JobPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
