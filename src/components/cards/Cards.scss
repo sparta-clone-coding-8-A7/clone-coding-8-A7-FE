@@ -1,18 +1,31 @@
 .cards{
+    // $len:4;
+    // $iconWidth: 250px;
+    // $Containwidth: calc(80% + (80% - #{$len} * #{$iconWidth}) / (#{$len}-1));
+    // width: $Containwidth;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 30px;
+    // position: relative;
+    // left: 50%;
+    // transform: translate(-50%,0);
+    justify-content: center;
+    padding-right: 100px;
+    padding-left: 100px;
 }
 .card-item{
     text-decoration: none;
     color: black;
     border-radius: 4px;
     margin-bottom: 60px;
-    width: 250px;
+    // width: 25%;
+    .card-item-list{
+        width: 250px;
+        margin: 0 auto;
+    }
     img{
         border-radius: 4px;
-        width: 250px;
+        width: 249px;
         height: 200px;
         margin-bottom: 8px
     }
@@ -33,7 +46,7 @@
         margin-bottom: 5px;
         text-overflow: ellipsis;
         white-space: nowrap;
-        overflow: hidden;
+        // overflow: hidden;
     }
     
     .company-pay{
@@ -43,10 +56,11 @@
         font-weight: 500;
         text-align: left;
         word-break: break-word;
-        width: 100%;
         text-overflow: ellipsis;
         white-space: nowrap;
-        overflow: hidden;
-    }
-    
+        // overflow: hidden;
+    }    
+}
+.scrolldown-nope{
+    display: none;
 }

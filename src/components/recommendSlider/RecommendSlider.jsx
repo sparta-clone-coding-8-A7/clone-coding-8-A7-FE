@@ -29,7 +29,7 @@ const RecommendSlider = () => {
         }
     } 
     useEffect(()=>{
-        response()
+      response()
     },[])
     return (
     <div className='recommendation'>
@@ -50,7 +50,7 @@ const RecommendSlider = () => {
           {/* <button type="button" className='arrow-right'>{">"}</button> */}
         </div>
       </div>
-        <div className='recommend-items' >
+        {/* <div className='recommend-items' >
           <Swiper
           slidesPerView={4}
           slidesPerGroup={4}
@@ -68,8 +68,7 @@ const RecommendSlider = () => {
             )
           })}
           </Swiper>
-            
-        </div>
+        </div> */}
     </div>
   )
 }
