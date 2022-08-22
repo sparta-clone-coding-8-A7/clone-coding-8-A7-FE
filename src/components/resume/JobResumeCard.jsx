@@ -1,11 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import "./JobApplyCard.scss";
-import { __uploadFile } from "../../redux/modules/uploadFileSlice";
+// eslint-disable-next-line
 
-const JobApplyCard = () => {
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import "./JobResumeCard.scss";
+
+import { __uploadFile } from "../../redux/modules/jobDetailSlice";
+import JobDetailLike from "../like/JobDetailLike";
+
+const JobResumeCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
+
+  // const user = useSelector((state) => state.jobDetailSlice.user);
 
   const dispatch = useDispatch();
 
@@ -23,16 +30,33 @@ const JobApplyCard = () => {
 
   return (
     <div className="jobApplyCard_Container">
-      <div className="jobApplyCard_Container__buttonContainer">
+      <div className="jobApplyCard_Container__userContainer">
+        <h3>지원자 정보</h3>
+        <label
+          for="name"
+          class="jobApplyCard_Container__userContainer__username">
+          <h4>이름</h4>
+          <div className="jobApplyCard_Container__userContainer__username__name">
+            profile_nickname
+          </div>
+        </label>
+        <label for="name" class="jobApplyCard_Container__userContainer__email">
+          <h4>이메일</h4>
+          <div className="jobApplyCard_Container__userContainer__email__account">
+            account_email
+          </div>
+        </label>
+      </div>
+      <div className="jobApplyCard_Container__fileContainer">
         <form onSubmit={handleSubmit}>
           <input
             type="file"
             name="file"
             onChange={handleFileSelect}
-            className="jobApplyCard_Container__buttonContainer__file"
+            className="jobApplyCard_Container__fileContainer__file"
           />
           {isFilePicked ? (
-            <div className="jobApplyCard_Container__buttonContainer__desc">
+            <div className="jobApplyCard_Container__fileContainer__desc">
               <p>파일명: {selectedFile.name}</p>
               <p>파일종류: {selectedFile.type}</p>
               <p>파일크기: {selectedFile.size}</p>
@@ -48,14 +72,15 @@ const JobApplyCard = () => {
             </p>
           )}
           <input
-            className="jobApplyCard_Container__buttonContainer__button"
+            className="jobApplyCard_Container__fileContainer__button"
             type="submit"
             value="지원하기"
           />
         </form>
       </div>
+      <JobDetailLike />
     </div>
   );
 };
 
-export default JobApplyCard;
+export default JobResumeCard;
