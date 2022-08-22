@@ -30,21 +30,23 @@ const JobSwiperCard = () => {
   console.log(images);
 
   return (
-    <Swiper
-      className="imageSwiperContainer"
-      centeredSlides={true}
-      spaceBetween={8}
-      slidesPerView={1}
-      scrollbar={{ draggable: true, dragSize: 24 }}
-      navigation={true}>
-      {images.map((image, index) => {
-        return (
-          <SwiperSlide className="image" key={index}>
-            <img src={image.image} alt="imageSlide" />
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+    <>
+      <Swiper
+        className="imageSwiperContainer"
+        centeredSlides={true}
+        spaceBetween={8}
+        slidesPerView={1}
+        scrollbar={{ draggable: true, dragSize: 24 }}
+        navigation={true}>
+        {images.map((image, index) => {
+          return (
+            <SwiperSlide className="image" key={index}>
+              <img src={image.image} alt="imageSlide" />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </>
   );
 };
 

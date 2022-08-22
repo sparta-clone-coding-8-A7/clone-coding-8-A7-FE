@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import "./JobApplyCard.scss";
+
 import { __uploadFile } from "../../redux/modules/jobDetailSlice";
+import JobDetailLike from "../like/JobDetailLike";
 
 const JobApplyCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -73,6 +76,7 @@ const JobApplyCard = () => {
           />
         </form>
       </div>
+      <JobDetailLike />
     </div>
   );
 };

@@ -26,6 +26,10 @@ const initialState = {
     fileUpload: "",
   },
   file: [],
+  dataLike: true,
+  isLoading: false,
+  success: null,
+  error: null,
 };
 
 export const __uploadFile = createAsyncThunk(
@@ -88,6 +92,29 @@ export const __getUserInfo = createAsyncThunk(
   }
 );
 
+export const __toggleLike = createAsyncThunk(
+  "detail/__toggleLike",
+  async (postId, thunkAPI) => {
+    try {
+      // const Refreshtoken = localStorage.getItem('refreshToken');
+      // const Authorization = localStorage.getItem('authorization');
+      const headers = {
+        "Content-Type": "application/json",
+        // Authorization: `${Authorization}`,
+        // Refreshtoken: `${Refreshtoken}`
+      };
+      const response = await axios.post(
+        `/api/jobpost/${postId}/heart`,
+        {},
+        { headers: headers }
+      );
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const jobDetailSlice = createSlice({
   name: "jobDetailSlice",
   initialState: initialState,
@@ -116,6 +143,17 @@ export const jobDetailSlice = createSlice({
       state.isLoading = false;
       state.user = [];
       state.err = action.payload;
+    },
+    [__toggleLike.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__toggleLike.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.dataLike = action.payload;
+    },
+    [__toggleLike.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
