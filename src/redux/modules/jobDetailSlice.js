@@ -21,11 +21,12 @@ import axios from "axios";
 
 const initialState = {
   user: {
-    username: "",
-    email: "",
-    fileUpload: "",
+    // username: "",
+    // email: "",
+    // fileUpload: "",
   },
   file: [],
+  companyDetail: [],
   dataLike: true,
   isLoading: false,
   success: null,
@@ -85,7 +86,7 @@ export const __getUserInfo = createAsyncThunk(
         // config
       );
       return thunkAPI.fulfillWithValue(data.data);
-      console.log(data.data);
+      // console.log(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -112,6 +113,28 @@ export const __toggleLike = createAsyncThunk(
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __getCompanyDetail = createAsyncThunk(
+  "detail/__getCompanyDetail",
+  async (payload, thunkAPI) => {
+    try {
+      const jobPostId = payload.id;
+      const headers = {
+        "Content-Type": "application/json",
+        // Authorization: `${Authorization}`,
+        // Refreshtoken: `${Refreshtoken}`
+      };
+      const response = await axios.get(
+        `/api/jobPost/${jobPostId}`,
+        {},
+        { headers: headers }
+      );
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -143,7 +166,7 @@ export const jobDetailSlice = createSlice({
     [__getUserInfo.rejected]: (state, action) => {
       state.isLoading = false;
       state.user = [];
-      state.err = action.payload;
+      state.error = action.payload;
     },
     [__toggleLike.pending]: (state, action) => {
       state.isLoading = true;
@@ -154,6 +177,18 @@ export const jobDetailSlice = createSlice({
     },
     [__toggleLike.rejected]: (state, action) => {
       state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__getCompanyDetail.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getCompanyDetail.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.companyDetail = action.payload;
+    },
+    [__getCompanyDetail.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.companyDetail = [];
       state.error = action.payload;
     },
   },

@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +12,7 @@ const JobResumeCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
-  // const user = useSelector((state) => state.userInfoSlice.user);
+  // const user = useSelector((state) => state.jobDetailSlice.user);
 
   const dispatch = useDispatch();
 
