@@ -1,13 +1,12 @@
 // eslint-disable-next-line
 
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import "./JobResumeCard.scss";
 
 import { __uploadFile } from "../../redux/modules/jobDetailSlice";
-// import { __getUserInfo } from "../../redux/modules/jobDetailSlice";
 
 import JobDetailLike from "../like/JobDetailLike";
 
@@ -18,33 +17,30 @@ const JobResumeCard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
-  // const user = useSelector((state) => state.jobDetailSlice.user);
-  // console.log(user);
-
   const username = localStorage.getItem("username");
   const email = localStorage.getItem("email");
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    const sendData = formData.append("fileUpload", selectedFile);
-
-    const username = localStorage.getItem("username");
-    const email = localStorage.getItem("email");
-
-    dispatch(__uploadFile({ sendData, username, email, jobPostId }));
-  };
-
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
+  console.log(selectedFile);
 
-  // useEffect(() => {
-  //   dispatch(__getUserInfo());
-  // }, []);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const fileUpload = new FormData();
+    fileUpload.append("selectedFile", selectedFile);
+    for (let value of fileUpload.values()) {
+      console.log(value);
+    }
+
+    const username = localStorage.getItem("username");
+    const email = localStorage.getItem("email");
+
+    dispatch(__uploadFile({ fileUpload, username, email, jobPostId }));
+  };
 
   return (
     <div className="jobApplyCard_Container">
