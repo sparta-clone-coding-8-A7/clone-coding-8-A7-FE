@@ -135,13 +135,31 @@
                       width: 22px;
                       cursor: pointer;
                     }
-                    a {
-                      text-decoration: none;
-                      color: black;
-                      line-height: 30px;
-                      padding: 0 10px;
-                      font-size: 14px;
-                      font-weight: bold;
+                    .left-btn{
+                        position: relative;
+                        display: inline-block;
+                        height: 100%;
+                        vertical-align: middle;   
+                        margin-top: 3.5px;
+                        a{
+                            text-decoration: none;
+                            color: black;
+                            line-height: 30px;
+                            padding: 0 10px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            .anchor{
+                                border-radius: 15px;
+                                font-size: 14px;
+                                color:#666;
+                                line-height: 30px;
+                                padding: 0 10px;
+                                font-weight: 400;
+                                border: 1px solid #e1e2e3;
+                                cursor: pointer;
+                              }
+                            }
+                        }
                     }
                   }
                   .left-btn {
@@ -293,10 +311,12 @@
     }
   }
 }
-
-.companypage {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
+///공고 등록
+.companypage{
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
 }
+
+
