@@ -47,7 +47,7 @@ export const __uploadFile = createAsyncThunk(
       };
       // make request to backend
       const response = await axios.post(
-        `http://3.36.74.100:8080/api/jobPost/${jobPostId}/apply`,
+        `http://54.180.112.137:9990/api/jobPost/${jobPostId}/apply`,
         // 추후 url 추가
         {
           // data: formData,
@@ -109,7 +109,7 @@ export const __toggleLike = createAsyncThunk(
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.post(
-        `http://3.36.74.100:8080/api/jobPost/${jobPostId}/heart`,
+        `http://54.180.112.137:9990/api/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
@@ -133,7 +133,7 @@ export const __getCompanyDetail = createAsyncThunk(
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.get(
-        `http://3.36.74.100:8080/api/jobPost/${jobPostId}`,
+        `http://54.180.112.137:9990/api/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
