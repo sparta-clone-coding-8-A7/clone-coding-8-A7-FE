@@ -13,7 +13,7 @@
   box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);
   z-index: 800;
   .header-content {
-  margin: 0 auto;
+    margin: 0 auto;
     height: 50px;
     width: 80%;
     position: relative;
@@ -93,7 +93,6 @@
               font-size: 14px;
               font-weight: bold;
             }
-
           }
           .left-btn {
             position: relative;
@@ -119,59 +118,59 @@
                 cursor: pointer;
               }
 
-            .left-content{
+              .left-content {
                 height: 100%;
-                .left-tag{
-                    list-style: none;
-                    display: flex;
+                .left-tag {
+                  list-style: none;
+                  display: flex;
+                  height: 100%;
+
+                  .left-tags {
+                    position: relative;
+                    display: inline-block;
                     height: 100%;
-                    
-                    .left-tags{
-                        position: relative;
-                        display: inline-block;
-                        height: 100%;
-                        vertical-align: middle;   
-                        margin-top: 10px;
-                        .magnifier{
-                            width: 22px;
-                            cursor:pointer;
-                        }
-                        a{
-                            text-decoration: none;
-                            color: black;
-                            line-height: 30px;
-                            padding: 0 10px;
-                            font-size: 14px;
-                            font-weight: bold;
-                        }
+                    vertical-align: middle;
+                    margin-top: 10px;
+                    .magnifier {
+                      width: 22px;
+                      cursor: pointer;
                     }
-                    .left-btn{
-                        position: relative;
-                        display: inline-block;
-                        height: 100%;
-                        vertical-align: middle;   
-                        margin-top: 3.5px;
-                        a{
-                            text-decoration: none;
-                            color: black;
-                            line-height: 30px;
-                            padding: 0 10px;
-                            font-size: 14px;
-                            font-weight: bold;
-                            .anchor{
-                                border-radius: 15px;
-                                font-size: 14px;
-                                color:#666;
-                                line-height: 30px;
-                                padding: 0 10px;
-                                font-weight: 400;
-                                border: 1px solid #e1e2e3;
-                                cursor: pointer;
-                                
-                            }
-                        }
+                    a {
+                      text-decoration: none;
+                      color: black;
+                      line-height: 30px;
+                      padding: 0 10px;
+                      font-size: 14px;
+                      font-weight: bold;
                     }
+                  }
+                  .left-btn {
+                    position: relative;
+                    display: inline-block;
+                    height: 100%;
+                    vertical-align: middle;
+                    margin-top: 3.5px;
+                    a {
+                      text-decoration: none;
+                      color: black;
+                      line-height: 30px;
+                      padding: 0 10px;
+                      font-size: 14px;
+                      font-weight: bold;
+                      .anchor {
+                        border-radius: 15px;
+                        font-size: 14px;
+                        color: #666;
+                        line-height: 30px;
+                        padding: 0 10px;
+                        font-weight: 400;
+                        border: 1px solid #e1e2e3;
+                        cursor: pointer;
+                      }
+                    }
+                  }
                 }
+              }
             }
           }
         }
@@ -295,9 +294,9 @@
   }
 }
 
-.companypage{
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    position: absolute;
+.companypage {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
