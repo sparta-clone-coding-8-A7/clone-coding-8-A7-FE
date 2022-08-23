@@ -9,12 +9,13 @@ import { __getCompanyDetail } from "../../redux/modules/jobDetailSlice";
 import "./CompanyDetailCard.scss";
 
 const CompanyDetailCard = () => {
+  const id = useParams();
+  // console.log(id);
+
   const companies = useSelector((state) => state.jobDetailSlice.companyDetail);
   // const success = useSelector((state) => state.jobDetailSlice.success);
   console.log(companies);
   // console.log(success);
-
-  const { id } = useParams();
 
   const dispatch = useDispatch();
 
@@ -22,9 +23,10 @@ const CompanyDetailCard = () => {
   //   dispatch(__getCompanyDetail(id));
   // }, [dispatch, success]);
 
+  // console.log(id.id);
   useEffect(() => {
-    dispatch(__getCompanyDetail(parseInt(id)));
-  }, []);
+    dispatch(__getCompanyDetail(id.id));
+  }, [id, dispatch]);
 
   return (
     <div className="companyDetailCard__Container">

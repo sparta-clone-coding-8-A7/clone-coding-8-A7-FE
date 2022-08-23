@@ -126,13 +126,14 @@ export const __getCompanyDetail = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const jobPostId = payload;
+      console.log(payload);
       const headers = {
         "Content-Type": "application/json",
         // Authorization: `${Authorization}`,
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.get(
-        `http://112.144.201.175:3000/api/jobPost/${jobPostId}`,
+        `http://3.36.74.100:8080/api/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
