@@ -3,6 +3,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const dataServer = process.env.REACT_APP_DATA;
+
 // const userToken = localStorage.getItem("userToken")
 //   ? localStorage.getItem("userToken")
 //   : null;
@@ -47,7 +49,7 @@ export const __uploadFile = createAsyncThunk(
       };
       // make request to backend
       const response = await axios.post(
-        `http://54.180.112.137:9990/api/jobPost/${jobPostId}/apply`,
+        dataServer + `/jobPost/${jobPostId}/apply`,
         // 추후 url 추가
         {
           // data: formData,
@@ -57,6 +59,7 @@ export const __uploadFile = createAsyncThunk(
         },
         config
       );
+      console.log(response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -109,7 +112,7 @@ export const __toggleLike = createAsyncThunk(
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.post(
-        `http://54.180.112.137:9990/api/jobPost/${jobPostId}/heart`,
+        dataServer + `/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
@@ -133,7 +136,7 @@ export const __getCompanyDetail = createAsyncThunk(
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.get(
-        `http://54.180.112.137:9990/api/jobPost/${jobPostId}`,
+        dataServer + `/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
