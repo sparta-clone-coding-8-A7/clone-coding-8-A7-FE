@@ -41,7 +41,6 @@ const Header = () => {
         console.log(error)
     }
   }
-  
   return (
     <div className='header-spec'>
       {searchBar === false ? 
