@@ -16,7 +16,7 @@ import "swiper/scss/pagination";
 import "./JobSwiperCard.scss";
 
 const JobSwiperCard = () => {
-  // const company = useSelector((state) => state.jobDetailSlice.companyDetail);
+  const companies = useSelector((state) => state.jobDetailSlice.companyDetail);
 
   const { id } = useParams();
 
@@ -28,20 +28,20 @@ const JobSwiperCard = () => {
 
   SwiperCore.use([Navigation, Scrollbar]);
 
-  const images = [
-    {
-      image: require("../../assets/random1.png"),
-    },
-    { image: require("../../assets/random2.png") },
-    { image: require("../../assets/random1.png") },
-    {
-      image: require("../../assets/random1.png"),
-    },
-    { image: require("../../assets/random2.png") },
-    { image: require("../../assets/random1.png") },
-  ];
+  // const images = [
+  //   {
+  //     image: require("../../assets/random1.png"),
+  //   },
+  //   { image: require("../../assets/random2.png") },
+  //   { image: require("../../assets/random1.png") },
+  //   {
+  //     image: require("../../assets/random1.png"),
+  //   },
+  //   { image: require("../../assets/random2.png") },
+  //   { image: require("../../assets/random1.png") },
+  // ];
 
-  console.log(images);
+  console.log(companies.imageUrl);
 
   return (
     <>
@@ -52,13 +52,14 @@ const JobSwiperCard = () => {
         slidesPerView={1}
         scrollbar={{ draggable: true, dragSize: 24 }}
         navigation={true}>
-        {images.map((image, index) => {
-          return (
-            <SwiperSlide className="image" key={index}>
-              <img src={image.image} alt="imageSlide" />
-            </SwiperSlide>
-          );
-        })}
+        {companies.imageUrl &&
+          companies.imageUrl.map((image, index) => {
+            return (
+              <SwiperSlide className="image" key={index}>
+                <img src={image} alt="imageSlide" />
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </>
   );
