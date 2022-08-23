@@ -127,7 +127,7 @@ export const __getCompanyDetail = createAsyncThunk(
       };
       const response = await axios.get(
         // `/api/jobPost/${jobPostId}`,
-        "https://run.mocky.io/v3/f4c19d08-9891-4df3-8516-b81076b98b32",
+        "https://run.mocky.io/v3/c06b751d-91d1-40cf-b0d9-e02c79ca0685",
         {},
         { headers: headers }
       );
