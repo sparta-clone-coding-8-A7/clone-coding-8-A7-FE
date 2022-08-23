@@ -1,14 +1,15 @@
 // eslint-disable-next-line
-
 import React from "react";
 import JobSwiperCard from "../components/swiper/JobSwiperCard";
 import JobResumeCard from "../components/resume/JobResumeCard";
 import CompanyDetailCard from "../components/company/CompanyDetailCard";
 import "../assets/JobPage.scss";
+import Header from "../components/header/Header";
 
 const JobPage = () => {
   return (
     <div className="jobPage_Container">
+      <Header></Header>
       <div className="jobDetailLeft">
         <JobSwiperCard />
         <CompanyDetailCard />

@@ -8,7 +8,6 @@ import { useState } from "react";
 function App() {
   return (
     <div className="App">
-      <Header></Header>
       {/* <Search></Search> */}
       <Router></Router>
       <Footer></Footer>
