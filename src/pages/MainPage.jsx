@@ -3,6 +3,7 @@ import Slidercard from '../components/slider/Slider'
 import Cards from '../components/cards/Cards'
 import logo from "../assets/magnifi.png"
 import RecommendSlider from '../components/recommendSlider/RecommendSlider'
+import Header from '../components/header/Header'
 
 const MainPage = () => {
   const BigBtn = () => {
@@ -18,6 +19,7 @@ const MainPage = () => {
   
   return (
     <div className='mainpage'>
+      <Header></Header>
       <Slidercard></Slidercard>
       <BigBtn></BigBtn>
       <div className='recommend'>

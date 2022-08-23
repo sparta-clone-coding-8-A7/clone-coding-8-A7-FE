@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom"
 const Header = () => {
   const [searchBar,setSearchBar] = useState(false) // 검색창 여닫이
   const [loginUp,setLoginUp] = useState(false) // 로그인 창 여닫이
-  
+  const navigate = useNavigate()
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchBar((prev)=>!prev)    
@@ -22,24 +22,24 @@ const Header = () => {
   const handleLogOut = async (e) => {
     e.preventDefault();
     // setLoginUp((prev)=>!prev)
-    
+    let auth = localStorage.getItem("authorization")
+    let refresh = localStorage.getItem("refreshtoken")
     try{
-      let auth = localStorage.getItem("authorization")
-      let token = localStorage.getItem("refreshtoken")
-      await axios.post("http://3.36.74.100:8080/api/user/logout",{ // 로그아웃
+      await axios.post(`http://54.180.112.137:9990/api/user/logout`,{},{ // 로그아웃
         headers:{
-          "authorization":auth,
-          "refreshtoken":token
+          "Content-Type": "application/json",
+          "Authorization":auth,
+          "RefreshToken":refresh
         }
       })
-      localStorage.removeItem("authorization")
-      localStorage.removeItem("refreshtoken")
       localStorage.removeItem("username")
       localStorage.removeItem("email")
-      window.location.href = "/"
-      } catch(error){
-          console.log(error)
-      }
+      localStorage.removeItem("authorization")
+      localStorage.removeItem("refreshtoken")
+      navigate("/")
+    } catch(error){
+        console.log(error)
+    }
   }
   
   return (
@@ -54,15 +54,16 @@ const Header = () => {
             </div>
             <ul className='center-content'>
               <li className="navbar-item"><a href='/'>채용</a></li>
-              <li className="navbar-item"><a href='/companywrite'>채용등록</a></li>
+              <li className="navbar-item"><a href='/companypage'>채용등록</a></li>
               {/* <li className="navbar-item"><a href='/'>채용</a></li>
               <li className="navbar-item"><a href='/'>채용</a></li> */}
             </ul>
             <div className='left-content'>
               <ul className='left-tag'>
                 <li className='left-tags'><img className='magnifier' onClick={handleSearch} src={magnifier}></img></li>
-                {!localStorage.getItem("authorization") === true ? <li className='left-tags'><div onClick={handleLogin}>회원가입/로그인</div></li>
-                : <li className='left-tags'><div onClick={handleLogOut}>LogOut</div></li>}
+                {!localStorage.getItem("authorization") === true && !localStorage.getItem("refreshtoken") === true ?
+                  <li className='left-tags'><div onClick={handleLogin}>회원가입/로그인</div></li> : 
+                <li className='left-tags'><div onClick={handleLogOut}>LogOut</div></li>}
                 <li className='left-btn'><a href='/'><button className='anchor'>기업 서비스</button></a></li>
               </ul>
             </div>

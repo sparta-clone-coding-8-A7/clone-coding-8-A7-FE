@@ -4,7 +4,6 @@
     padding-top: 50px;
 }
 /// 헤더
-
 .header{
     position: fixed;
     width: 100vw;    
@@ -80,9 +79,8 @@
                         display: inline-block;
                         height: 100%;
                         vertical-align: middle;   
-                        margin-top: 5px;    
+                        margin-top: 10px;
                         .magnifier{
-                            margin-top: 2px;
                             width: 22px;
                             cursor:pointer;
                         }
@@ -158,9 +156,14 @@
     width: 80%;
     margin: 0 auto;
 }
-
-
 /// 아래 지점
 .footer{
     width: 100%;
+}
+
+.companypage{
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
 }

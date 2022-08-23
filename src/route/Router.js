@@ -4,19 +4,21 @@ import MainPage from "../pages/MainPage";
 import Ready from '../pages/Ready';
 import JobPage from "../pages/JobPage";
 import KakaoLogin from "../components/login/KakaoLogin"
-import Company from "../pages/Company";
+import CompanyPage from "../pages/CompanyPage";
+import Header from '../components/header/Header';
+
 
 const Router = () => {
   return (
     <div>
       <BrowserRouter>
-          <Routes>
-              <Route path={'/'} element={<MainPage></MainPage>}></Route>
-              <Route path={'/ready'} element={<Ready></Ready>}></Route>
-              <Route path={"/jobpost/:jobPostId"} element={<JobPage />}></Route>
-              <Route path={'/oauth'} element={<KakaoLogin></KakaoLogin>}></Route>
-              <Route path={'/companywrite'} element={<Company></Company>}></Route>
-          </Routes>
+        <Routes>
+          <Route path={'/'} element={<MainPage></MainPage>}></Route>
+          <Route path={'/ready'} element={<Ready></Ready>}></Route>
+          <Route path={"/jobpost/:jobPostId"} element={<JobPage />}></Route>
+          <Route path={'/oauth'} element={<KakaoLogin></KakaoLogin>}></Route>
+          <Route path={'/companypage'} element={<CompanyPage></CompanyPage>}></Route>
+        </Routes>
       </BrowserRouter>      
     </div>
   );
