@@ -93,9 +93,9 @@ export const __getUserInfo = createAsyncThunk(
 
 export const __toggleLike = createAsyncThunk(
   "like/__toggleLike",
-  async (postId, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const jobPostId = postId;
+      const jobPostId = payload;
       // const Refreshtoken = localStorage.getItem('refreshToken');
       // const Authorization = localStorage.getItem('authorization');
       const headers = {
@@ -108,6 +108,7 @@ export const __toggleLike = createAsyncThunk(
         {},
         { headers: headers }
       );
+      console.log(response.data);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
