@@ -2,6 +2,8 @@
   .jobPage_Container {
     max-width: 1060px;
     height: 100vh;
+    margin: 0 auto;
+    padding: 20px 0 80px;
     // background-color: blue;
     position: relative;
     margin: 50px auto;
@@ -23,9 +25,12 @@
   .jobPage_Container {
     background: #fff;
     margin-top: 70px;
+    margin: 0 auto;
+    padding: 20px 0 80px;
+    width: 90%;
   }
   .jobDetailRight {
-    position: fixed;
+    // position: fixed;
     bottom: 0;
     width: 100%;
   }
@@ -34,16 +39,29 @@
 @media (max-width: 767px) {
   .jobPage_Container {
     margin-top: 70px;
+    margin: 0 auto;
+    padding: 20px 0 80px;
+    width: 90%;
   }
   .jobDetailRight {
-    position: fixed;
+    // position: fixed;
     bottom: 0;
     width: 100%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .jobPage_Container {
+    margin: 0 auto;
+    padding: 20px 0 80px;
+    width: 90%;
   }
 }
 
 @media (min-width: 1200px) {
   .jobPage_Container {
     width: 87.72%;
+    margin: 0 auto;
+    padding: 20px 0 80px;
   }
 }
