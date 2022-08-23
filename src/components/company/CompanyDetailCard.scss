@@ -1,10 +1,27 @@
 .companyDetailCard__Container {
   margin: 40px 0 30px;
   display: block;
-  &__location {
+  h2 {
+    color: #333;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    word-break: keep-all;
+    word-wrap: break-word;
+  }
+  &__companyInfo h6 {
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+  &__companyInfo span {
     position: relative;
     white-space: nowrap;
     color: #999;
+    margin-left: 10px;
   }
   &__company {
     p {
@@ -24,11 +41,12 @@
     }
   }
   &__stackList {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     grid-gap: 10px 8px;
     gap: 10px 8px;
     margin-top: 5px;
+    margin-right: 5px;
     &__skill {
       background-color: #e4f4ec;
       border-radius: 20px;
