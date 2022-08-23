@@ -41,7 +41,7 @@ const JobSwiperCard = () => {
   //   { image: require("../../assets/random1.png") },
   // ];
 
-  console.log(companies.imageUrl);
+  console.log(companies.imgUrlList);
 
   return (
     <>
@@ -52,8 +52,8 @@ const JobSwiperCard = () => {
         slidesPerView={1}
         scrollbar={{ draggable: true, dragSize: 24 }}
         navigation={true}>
-        {companies.imageUrl &&
-          companies.imageUrl.map((image, index) => {
+        {companies.imgUrlList &&
+          companies.imgUrlList.map((image, index) => {
             return (
               <SwiperSlide className="image" key={index}>
                 <img src={image} alt="imageSlide" />
