@@ -2,28 +2,39 @@
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import "./JobResumeCard.scss";
 
 import { __uploadFile } from "../../redux/modules/jobDetailSlice";
-import { __getUserInfo } from "../../redux/modules/jobDetailSlice";
+// import { __getUserInfo } from "../../redux/modules/jobDetailSlice";
 
 import JobDetailLike from "../like/JobDetailLike";
 
 const JobResumeCard = () => {
+  const { id } = useParams();
+  const jobPostId = parseInt(id);
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
-  const user = useSelector((state) => state.jobDetailSlice.user);
-  console.log(user);
+  // const user = useSelector((state) => state.jobDetailSlice.user);
+  // console.log(user);
+
+  const username = localStorage.getItem("username");
+  const email = localStorage.getItem("email");
 
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    const sendData = formData.append("selectedFile", selectedFile);
-    dispatch(__uploadFile(sendData));
+    const sendData = formData.append("fileUpload", selectedFile);
+
+    const username = localStorage.getItem("username");
+    const email = localStorage.getItem("email");
+
+    dispatch(__uploadFile({ sendData, username, email, jobPostId }));
   };
 
   const handleFileSelect = (event) => {
@@ -31,9 +42,9 @@ const JobResumeCard = () => {
     setIsFilePicked(true);
   };
 
-  useEffect(() => {
-    dispatch(__getUserInfo());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(__getUserInfo());
+  // }, []);
 
   return (
     <div className="jobApplyCard_Container">
@@ -44,7 +55,7 @@ const JobResumeCard = () => {
           className="jobApplyCard_Container__userContainer__username">
           <h4>이름</h4>
           <div className="jobApplyCard_Container__userContainer__username__name">
-            {user.username}
+            {username}
           </div>
         </label>
         <label
@@ -52,7 +63,7 @@ const JobResumeCard = () => {
           className="jobApplyCard_Container__userContainer__email">
           <h4>이메일</h4>
           <div className="jobApplyCard_Container__userContainer__email__account">
-            {user.email}
+            {email}
           </div>
         </label>
       </div>

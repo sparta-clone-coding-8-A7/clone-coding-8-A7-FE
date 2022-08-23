@@ -23,7 +23,7 @@ const initialState = {
   user: {},
   file: [],
   companyDetail: [],
-  dataLike: true,
+  isLike: true,
   isLoading: false,
   success: null,
   error: null,
@@ -35,22 +35,26 @@ export const __uploadFile = createAsyncThunk(
   // callback function
   async (payload, thunkAPI) => {
     try {
-      const formData = payload;
+      const formData = payload.sendData;
+      const username = payload.username;
+      const email = payload.email;
+      const jobPostId = payload.jobPostId;
       // configure header's Content-Type as mulipart/form-data
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // };
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
       // make request to backend
       const response = await axios.post(
-        "/api/jobpost/file",
+        `http://3.36.74.100:8080/api/jobPost/${jobPostId}/apply`,
         // 추후 url 추가
-        // 보내는 방식이 맞는지 (성우님과 성의)
         {
           data: formData,
-        }
-        // config
+          username: username,
+          email: email,
+        },
+        config
       );
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
@@ -104,7 +108,7 @@ export const __toggleLike = createAsyncThunk(
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.post(
-        `/api/jobPost/${jobPostId}/heart`,
+        `http://3.36.74.100:8080/api/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
@@ -175,7 +179,7 @@ export const jobDetailSlice = createSlice({
     },
     [__toggleLike.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.dataLike = action.payload;
+      state.isLike = action.payload;
     },
     [__toggleLike.rejected]: (state, action) => {
       state.isLoading = false;
