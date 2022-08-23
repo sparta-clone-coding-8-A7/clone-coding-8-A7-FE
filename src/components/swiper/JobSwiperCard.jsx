@@ -17,14 +17,16 @@ import "./JobSwiperCard.scss";
 
 const JobSwiperCard = () => {
   const companies = useSelector((state) => state.jobDetailSlice.companyDetail);
+  console.log(companies);
 
   const { id } = useParams();
+  console.log(id);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(__getCompanyDetail(parseInt(id)));
-  }, []);
+  }, [dispatch, id]);
 
   SwiperCore.use([Navigation, Scrollbar]);
 
