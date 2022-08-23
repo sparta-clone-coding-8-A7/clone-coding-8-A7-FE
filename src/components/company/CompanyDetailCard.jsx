@@ -23,7 +23,7 @@ const CompanyDetailCard = () => {
   // }, [dispatch, success]);
 
   useEffect(() => {
-    dispatch(__getCompanyDetail(id));
+    dispatch(__getCompanyDetail(parseInt(id)));
   }, []);
 
   return (

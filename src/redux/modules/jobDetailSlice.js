@@ -50,7 +50,8 @@ export const __uploadFile = createAsyncThunk(
         `http://3.36.74.100:8080/api/jobPost/${jobPostId}/apply`,
         // 추후 url 추가
         {
-          data: formData,
+          // data: formData,
+          fileUpload: formData,
           username: username,
           email: email,
         },
@@ -63,37 +64,37 @@ export const __uploadFile = createAsyncThunk(
   }
 );
 
-export const __getUserInfo = createAsyncThunk(
-  // action type string
-  "detail/__getUserInfo",
-  // callback function
-  async (payload, thunkAPI) => {
-    try {
-      // const formData = payload;
-      // configure header's Content-Type as mulipart/form-data
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // };
-      // make request to backend
-      const response = await axios.get(
-        // "/api/user/kakaoLogin"
-        "https://run.mocky.io/v3/1ddd8034-8e73-4fa4-8b9d-39b7f8303719"
-        // 추후 url 추가
-        // {
-        //   data: formData,
-        // },
-        // config
-      );
-      console.log(response.data);
-      return thunkAPI.fulfillWithValue(response.data);
-      // console.log(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const __getUserInfo = createAsyncThunk(
+//   // action type string
+//   "detail/__getUserInfo",
+//   // callback function
+//   async (payload, thunkAPI) => {
+//     try {
+//       // const formData = payload;
+//       // configure header's Content-Type as mulipart/form-data
+//       // const config = {
+//       //   headers: {
+//       //     "Content-Type": "multipart/form-data",
+//       //   },
+//       // };
+//       // make request to backend
+//       const response = await axios.get(
+//         // "/api/user/kakaoLogin"
+//         "https://run.mocky.io/v3/1ddd8034-8e73-4fa4-8b9d-39b7f8303719"
+//         // 추후 url 추가
+//         // {
+//         //   data: formData,
+//         // },
+//         // config
+//       );
+//       console.log(response.data);
+//       return thunkAPI.fulfillWithValue(response.data);
+//       // console.log(data.data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const __toggleLike = createAsyncThunk(
   "like/__toggleLike",
@@ -124,15 +125,14 @@ export const __getCompanyDetail = createAsyncThunk(
   "detail/__getCompanyDetail",
   async (payload, thunkAPI) => {
     try {
-      // const jobPostId = payload;
+      const jobPostId = payload;
       const headers = {
         "Content-Type": "application/json",
         // Authorization: `${Authorization}`,
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.get(
-        // `/api/jobPost/${jobPostId}`,
-        "https://run.mocky.io/v3/c06b751d-91d1-40cf-b0d9-e02c79ca0685",
+        `http://112.144.201.175:3000/api/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
@@ -162,18 +162,18 @@ export const jobDetailSlice = createSlice({
       state.file = [];
       state.err = action.payload;
     },
-    [__getUserInfo.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [__getUserInfo.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.user = action.payload;
-    },
-    [__getUserInfo.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.user = [];
-      state.error = action.payload;
-    },
+    // [__getUserInfo.pending]: (state, action) => {
+    //   state.isLoading = true;
+    // },
+    // [__getUserInfo.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.user = action.payload;
+    // },
+    // [__getUserInfo.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.user = [];
+    //   state.error = action.payload;
+    // },
     [__toggleLike.pending]: (state, action) => {
       state.isLoading = true;
     },

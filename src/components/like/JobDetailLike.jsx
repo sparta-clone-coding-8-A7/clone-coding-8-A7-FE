@@ -32,7 +32,7 @@ const JobDetailLike = () => {
   console.log(likeNumber);
 
   const onisLike = async () => {
-    dispatch(__toggleLike(jobPostId));
+    dispatch(__toggleLike(parseInt(jobPostId)));
   };
 
   return (

@@ -23,7 +23,7 @@ const JobSwiperCard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(__getCompanyDetail(id));
+    dispatch(__getCompanyDetail(parseInt(id)));
   }, []);
 
   SwiperCore.use([Navigation, Scrollbar]);
