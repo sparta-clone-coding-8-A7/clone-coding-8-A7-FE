@@ -3,6 +3,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const dataServer = process.env.REACT_APP_DATA;
+
 // const userToken = localStorage.getItem("userToken")
 //   ? localStorage.getItem("userToken")
 //   : null;
@@ -20,14 +22,10 @@ import axios from "axios";
 // };
 
 const initialState = {
-  user: {
-    // username: "",
-    // email: "",
-    // fileUpload: "",
-  },
+  user: {},
   file: [],
   companyDetail: [],
-  dataLike: true,
+  isLike: true,
   isLoading: false,
   success: null,
   error: null,
@@ -39,23 +37,29 @@ export const __uploadFile = createAsyncThunk(
   // callback function
   async (payload, thunkAPI) => {
     try {
-      const formData = payload;
+      const formData = payload.sendData;
+      const username = payload.username;
+      const email = payload.email;
+      const jobPostId = payload.jobPostId;
       // configure header's Content-Type as mulipart/form-data
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // };
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
       // make request to backend
       const response = await axios.post(
-        "/api/jobpost/file",
+        dataServer + `/jobPost/${jobPostId}/apply`,
         // 추후 url 추가
-        // 보내는 방식이 맞는지 (성우님과 성의)
         {
-          data: formData,
-        }
-        // config
+          // data: formData,
+          fileUpload: formData,
+          username: username,
+          email: email,
+        },
+        config
       );
+      console.log(response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -63,41 +67,43 @@ export const __uploadFile = createAsyncThunk(
   }
 );
 
-export const __getUserInfo = createAsyncThunk(
-  // action type string
-  "detail/__getUserInfo",
-  // callback function
-  async (payload, thunkAPI) => {
-    try {
-      // const formData = payload;
-      // configure header's Content-Type as mulipart/form-data
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // };
-      // make request to backend
-      const { data } = await axios.get(
-        "/api/user/kakaoLogin"
-        // 추후 url 추가
-        // {
-        //   data: formData,
-        // },
-        // config
-      );
-      return thunkAPI.fulfillWithValue(data.data);
-      // console.log(data.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const __getUserInfo = createAsyncThunk(
+//   // action type string
+//   "detail/__getUserInfo",
+//   // callback function
+//   async (payload, thunkAPI) => {
+//     try {
+//       // const formData = payload;
+//       // configure header's Content-Type as mulipart/form-data
+//       // const config = {
+//       //   headers: {
+//       //     "Content-Type": "multipart/form-data",
+//       //   },
+//       // };
+//       // make request to backend
+//       const response = await axios.get(
+//         // "/api/user/kakaoLogin"
+//         "https://run.mocky.io/v3/1ddd8034-8e73-4fa4-8b9d-39b7f8303719"
+//         // 추후 url 추가
+//         // {
+//         //   data: formData,
+//         // },
+//         // config
+//       );
+//       console.log(response.data);
+//       return thunkAPI.fulfillWithValue(response.data);
+//       // console.log(data.data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const __toggleLike = createAsyncThunk(
   "like/__toggleLike",
-  async (postId, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const jobPostId = postId;
+      const jobPostId = payload;
       // const Refreshtoken = localStorage.getItem('refreshToken');
       // const Authorization = localStorage.getItem('authorization');
       const headers = {
@@ -106,10 +112,11 @@ export const __toggleLike = createAsyncThunk(
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.post(
-        `/api/jobPost/${jobPostId}/heart`,
+        dataServer + `/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
+      console.log(response.data);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -121,18 +128,21 @@ export const __getCompanyDetail = createAsyncThunk(
   "detail/__getCompanyDetail",
   async (payload, thunkAPI) => {
     try {
-      const jobPostId = payload.id;
+      const jobPostId = payload;
+      console.log(payload);
       const headers = {
         "Content-Type": "application/json",
         // Authorization: `${Authorization}`,
         // Refreshtoken: `${Refreshtoken}`
       };
       const response = await axios.get(
-        `/api/jobPost/${jobPostId}`,
+        dataServer + `/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
+      console.log(response.data);
       return thunkAPI.fulfillWithValue(response.data);
+      // return thunkAPI.fulfillWithValue(response.data.id);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -156,24 +166,24 @@ export const jobDetailSlice = createSlice({
       state.file = [];
       state.err = action.payload;
     },
-    [__getUserInfo.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [__getUserInfo.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.user = action.payload;
-    },
-    [__getUserInfo.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.user = [];
-      state.error = action.payload;
-    },
+    // [__getUserInfo.pending]: (state, action) => {
+    //   state.isLoading = true;
+    // },
+    // [__getUserInfo.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.user = action.payload;
+    // },
+    // [__getUserInfo.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.user = [];
+    //   state.error = action.payload;
+    // },
     [__toggleLike.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__toggleLike.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.dataLike = action.payload;
+      state.isLike = action.payload;
     },
     [__toggleLike.rejected]: (state, action) => {
       state.isLoading = false;
@@ -185,6 +195,7 @@ export const jobDetailSlice = createSlice({
     [__getCompanyDetail.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.companyDetail = action.payload;
+      // state.success = action.payload;
     },
     [__getCompanyDetail.rejected]: (state, action) => {
       state.isLoading = false;
