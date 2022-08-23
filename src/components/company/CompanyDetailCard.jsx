@@ -29,12 +29,13 @@ const CompanyDetailCard = () => {
   return (
     <div className="companyDetailCard__Container">
       <h2>{companies.position}</h2>
-      <div className="companyDetailCard__Container__location">
+      <div className="companyDetailCard__Container__companyInfo">
+        <h6>{companies.name}</h6>
         <span>{companies.location}</span>
       </div>
       <div className="companyDetailCard__Container__company">
         <h6>회사소개</h6>
-        <p>{companies.name}</p>
+        <p>{companies.content}</p>
         <h6>마감일</h6>
         <p>{companies.deadline}</p>
         <h6>기술스택</h6>
