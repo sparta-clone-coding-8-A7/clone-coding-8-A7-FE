@@ -15,47 +15,47 @@ const initialState = {
   error: null,
 };
 
-export const __uploadFile = createAsyncThunk(
-  // action type string
-  "detail/__uploadFile",
-  // callback function
-  async (payload, thunkAPI) => {
-    try {
-      const fileUpload = payload.fileUpload;
-      console.log(fileUpload);
-      const username = payload.username;
-      console.log(username);
-      const email = payload.email;
-      console.log(email);
-      const jobPostId = payload.jobPostId;
-      console.log(jobPostId);
+// export const __uploadFile = createAsyncThunk(
+//   // action type string
+//   "detail/__uploadFile",
+//   // callback function
+//   async (payload, thunkAPI) => {
+//     try {
+//       const multipartFile = payload.formData;
+//       // console.log(multipartFile);
+//       const name = payload.name;
+//       // console.log(name);
+//       const email = payload.email;
+//       // console.log(email);
+//       // const jobPostId = payload.jobPostId;
+//       // console.log(jobPostId);
 
-      const Refreshtoken = localStorage.getItem("refreshtoken");
-      const Authorization = localStorage.getItem("authorization");
+//       // const Refreshtoken = localStorage.getItem("refreshtoken");
+//       // const Authorization = localStorage.getItem("authorization");
 
-      const headers = {
-        "Content-Type": "multipart/form-data",
-        Authorization: `${Authorization}`,
-        Refreshtoken: `${Refreshtoken}`,
-      };
-      // make request to backend
-      const response = await axios.post(
-        dataServer + `/jobPost/${jobPostId}/apply`,
-        {
-          // data: formData,
-          fileUpload: fileUpload,
-          username: username,
-          email: email,
-        },
-        { headers: headers }
-      );
-      console.log(response);
-      return thunkAPI.fulfillWithValue(response.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//       const headers = {
+//         "Content-Type": "multipart/form-data",
+//         // Authorization: `${Authorization}`,
+//         // Refreshtoken: `${Refreshtoken}`,
+//       };
+//       // make request to backend
+//       const response = await axios.post(
+//         dataServer + `/mail`,
+//         {
+//           // data: formData,
+//           multipartFile,
+//           email,
+//           name,
+//         },
+//         { headers: headers }
+//       );
+//       // console.log(response);
+//       return thunkAPI.fulfillWithValue(response.data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 // export const __getUserInfo = createAsyncThunk(
 //   // action type string
@@ -148,18 +148,18 @@ export const jobDetailSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: {
-    [__uploadFile.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [__uploadFile.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.file = action.payload;
-    },
-    [__uploadFile.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.file = [];
-      state.err = action.payload;
-    },
+    // [__uploadFile.pending]: (state, action) => {
+    //   state.isLoading = true;
+    // },
+    // [__uploadFile.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.file = action.payload;
+    // },
+    // [__uploadFile.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.file = [];
+    //   state.err = action.payload;
+    // },
     // [__getUserInfo.pending]: (state, action) => {
     //   state.isLoading = true;
     // },
