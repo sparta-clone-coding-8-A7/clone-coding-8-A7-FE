@@ -5,22 +5,6 @@ import axios from "axios";
 
 const dataServer = process.env.REACT_APP_DATA;
 
-// const userToken = localStorage.getItem("userToken")
-//   ? localStorage.getItem("userToken")
-//   : null;
-
-// const refreshToken = localStorage.getItem("refreshToken")
-//   ? localStorage.getItem("refreshToken")
-//   : null;
-
-// let config = {
-//   headers: {
-//     "Content-Type": "multipart/form-data",
-//     Authorization: userToken,
-//     RefreshToken: refreshToken,
-//   },
-// };
-
 const initialState = {
   user: {},
   file: [],
@@ -37,27 +21,33 @@ export const __uploadFile = createAsyncThunk(
   // callback function
   async (payload, thunkAPI) => {
     try {
-      const formData = payload.sendData;
+      const fileUpload = payload.fileUpload;
+      console.log(fileUpload);
       const username = payload.username;
+      console.log(username);
       const email = payload.email;
+      console.log(email);
       const jobPostId = payload.jobPostId;
-      // configure header's Content-Type as mulipart/form-data
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      console.log(jobPostId);
+
+      const Refreshtoken = localStorage.getItem("refreshtoken");
+      const Authorization = localStorage.getItem("authorization");
+
+      const headers = {
+        "Content-Type": "multipart/form-data",
+        Authorization: `${Authorization}`,
+        Refreshtoken: `${Refreshtoken}`,
       };
       // make request to backend
       const response = await axios.post(
         dataServer + `/jobPost/${jobPostId}/apply`,
-        // 추후 url 추가
         {
           // data: formData,
-          fileUpload: formData,
+          fileUpload: fileUpload,
           username: username,
           email: email,
         },
-        config
+        { headers: headers }
       );
       console.log(response);
       return thunkAPI.fulfillWithValue(response.data);
@@ -104,12 +94,13 @@ export const __toggleLike = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const jobPostId = payload;
-      // const Refreshtoken = localStorage.getItem('refreshToken');
-      // const Authorization = localStorage.getItem('authorization');
+      console.log(payload);
+      const Refreshtoken = localStorage.getItem("refreshtoken");
+      const Authorization = localStorage.getItem("authorization");
       const headers = {
         "Content-Type": "application/json",
-        // Authorization: `${Authorization}`,
-        // Refreshtoken: `${Refreshtoken}`
+        Authorization: `${Authorization}`,
+        Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.post(
         dataServer + `/jobPost/${jobPostId}/heart`,
@@ -130,17 +121,20 @@ export const __getCompanyDetail = createAsyncThunk(
     try {
       const jobPostId = payload;
       console.log(payload);
+      const Refreshtoken = localStorage.getItem("refreshtoken");
+      const Authorization = localStorage.getItem("authorization");
+
       const headers = {
         "Content-Type": "application/json",
-        // Authorization: `${Authorization}`,
-        // Refreshtoken: `${Refreshtoken}`
+        Authorization: `${Authorization}`,
+        Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.get(
         dataServer + `/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
-      console.log(response.data);
+      // console.log(response);
       return thunkAPI.fulfillWithValue(response.data);
       // return thunkAPI.fulfillWithValue(response.data.id);
     } catch (error) {

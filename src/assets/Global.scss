@@ -53,6 +53,7 @@
           :hover {
             box-shadow: inset 0 -2px #258bf7;
           }
+
           a {
             text-decoration: none;
             position: relative;
@@ -72,6 +73,7 @@
           list-style: none;
           display: flex;
           height: 100%;
+
           .left-tags {
             position: relative;
             display: inline-block;
@@ -122,12 +124,13 @@
                   list-style: none;
                   display: flex;
                   height: 100%;
+
                   .left-tags {
                     position: relative;
                     display: inline-block;
                     height: 100%;
                     vertical-align: middle;
-                    
+                    margin-top: 10px;
                     .magnifier {
                       width: 22px;
                       cursor: pointer;
@@ -137,6 +140,7 @@
                       display: inline-block;
                       height: 100%;
                       vertical-align: middle;
+                      margin-top: 3.5px;
                       a {
                         text-decoration: none;
                         color: black;
@@ -190,11 +194,6 @@
       }
     }
   }
-}
-.sign-in{
-  margin-left: 5px;
-  margin-top: 5px;
-  cursor: pointer;
 }
 /// else
 // .none{
@@ -311,7 +310,13 @@
     }
   }
 }
-
+///공고 등록
+.companypage {
+  width: 100vw;
+  .company-write{
+    padding: 130px;
+  }
+}
 
 @media (max-width: 767px) {
   .footer__container {
@@ -350,10 +355,4 @@
       }
     }
   }
-}
-
-.ready{
-  
-  margin: 0 auto;
-  padding-top: 500px;
 }

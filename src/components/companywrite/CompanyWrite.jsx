@@ -146,7 +146,7 @@ const CompanyWrite = () => {
     return (
     <>
         <h2>작성</h2>
-        <form onSubmit={handleSubmit} className="company-write">            
+        <form onSubmit={handleSubmit} className="company-write">
           <h3>포지션명</h3><input type="text" name="position" onChange={handleChange}></input>
           <h3>이미지</h3><input type="file" name="imgUrlList" multiple accept="image/png , image/jpeg , image/webp" onChange={onSelectFile}></input>
           <h3>내용 작성</h3><input type="textarea" name="content" onChange={handleChange}></input>
