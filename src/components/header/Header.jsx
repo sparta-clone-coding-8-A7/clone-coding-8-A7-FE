@@ -25,8 +25,8 @@ const Header = () => {
     let refresh = localStorage.getItem("refreshtoken");
     try {
       await axios.post(
-        // `http://54.180.112.137:9990/api/user/logout`,
-        `http://13.209.42.76:8080/api/user/logout`,
+        `http://54.180.112.137:9990/api/user/logout`,
+        // `http://13.209.42.76:8080/api/user/logout`,
         {},
         {
           // 로그아웃
