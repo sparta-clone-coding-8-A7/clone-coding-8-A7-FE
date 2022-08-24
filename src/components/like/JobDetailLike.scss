@@ -1,14 +1,18 @@
 .jobDetailLike__Container {
   margin: 24px 0 0;
   height: 30px;
-  &__likeHeart {
+  &__heart {
     height: 15px;
     border-radius: 15px;
     border: 1px solid #e1e2e3;
-    margin-right: 12px;
     padding: 5px 15px;
     float: left;
-    width: 15px;
+    width: 25px;
+    display: flex;
+  }
+  &__likeHeart {
+    height: 15px;
+    margin-right: 5px;
     p {
       display: inline;
       vertical-align: sub;

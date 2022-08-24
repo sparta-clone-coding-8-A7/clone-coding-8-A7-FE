@@ -47,25 +47,23 @@ const JobDetailLike = () => {
   return (
     <div className="jobDetailLike__Container">
       {postisLike || isLike ? (
-        <>
+        <div className="jobDetailLike__Container__heart">
           <img
             className="jobDetailLike__Container__likeHeart"
             onClick={onisLike}
             src={heart}
-            alt="heart"
-          />
+            alt="heart"></img>
           <p>{postlikeNumber ? postlikeNumber : `${isNumber}`}</p>
-        </>
+        </div>
       ) : (
-        <>
+        <div className="jobDetailLike__Container__heart">
           <img
             className="jobDetailLike__Container__likeHeart"
             onClick={onisLike}
             src={love}
-            alt="love"
-          />
+            alt="love"></img>
           <p>{postlikeNumber ? postlikeNumber : `${isNumber}`}</p>
-        </>
+        </div>
       )}
     </div>
   );
