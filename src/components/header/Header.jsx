@@ -78,11 +78,11 @@ const Header = () => {
                   {!localStorage.getItem("authorization") === true &&
                   !localStorage.getItem("refreshtoken") === true ? (
                     <li className="left-tags">
-                      <div onClick={handleLogin}>회원가입/로그인</div>
+                      <div onClick={handleLogin} className="sign-in">회원가입/로그인</div>
                     </li>
                   ) : (
                     <li className="left-tags">
-                      <div onClick={handleLogOut}>LogOut</div>
+                      <div onClick={handleLogOut} className="sign-in">LogOut</div>
                     </li>
                   )}
                   <li className="left-btn">

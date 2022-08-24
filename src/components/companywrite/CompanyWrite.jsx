@@ -36,6 +36,24 @@ const CompanyWrite = () => {
             console.log(error)
         }
     }
+    const getImg = async () => {
+        const formData = new FormData()
+        formData.append("imgUrlList",imageStorage) // 이미지 선 업로드
+        console.log(imageStorage)
+        try{
+            const repo = await axios.post(`http://54.180.112.137:9990/s3/file`,formData,{
+            headers:{
+                "Content-Type": "multipart/form-data",
+                "Authorization":auth,
+                "RefreshToken":token1
+            }
+        })
+        console.log(repo)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
     const getGroup = async () => {
         try{
             const repo = await axios.get(`http://54.180.112.137:9990/api/company/jobPost/page/jobGroup`,{ // 직군 카테고리 1
@@ -91,7 +109,7 @@ const CompanyWrite = () => {
         try{        // 채용공고 올리기
             await axios.post(`http://54.180.112.137:9990/api/company/jobPost`,formData,{ 
                 headers:{
-                "Content-Type": "multipart/form-data",
+                "Content-Type": "application/json",
                 "Authorization":auth,
                 "RefreshToken":token1
                 }
@@ -109,6 +127,9 @@ const CompanyWrite = () => {
         const imagesArray = selectedFilesArray.map((file) => {
             return URL.createObjectURL(file);
         });
+    }
+    const sendImage = () => {
+        getImg()
     }
     const handleStack = (e) => { // 스택 쌓기
         setGotStack((prev)=>[...prev,e.target.textContent])
@@ -139,20 +160,25 @@ const CompanyWrite = () => {
         }
     },[])
     useEffect(()=>{
-        if(gotGroup1 !== ""){
-            getGroup2()
+        if(gotGroup1 === ""){
+            console.log("Not yet")
+        }else{
+            console.log("Ready")
+            getGroup2()    
         }
-    },[])
+        
+    },[gotGroup1])
     return (
     <>
         <h2>작성</h2>
         <form onSubmit={handleSubmit} className="company-write">
           <h3>포지션명</h3><input type="text" name="position" onChange={handleChange}></input>
           <h3>이미지</h3><input type="file" name="imgUrlList" multiple accept="image/png , image/jpeg , image/webp" onChange={onSelectFile}></input>
+          <div onClick={sendImage} className="company-btn">이미지 업로드</div>
           <h3>내용 작성</h3><input type="textarea" name="content" onChange={handleChange}></input>
           <h3>마감일</h3><input type="text" name="deadline" onChange={handleChange}></input>
           <div onClick={openStack} className="company-stack">스택</div>
-          <div className="stack-btn" onClick={openStack}>선택 완료</div>
+          <div className="company-btn" onClick={openStack}>선택 완료</div>
           {stackCheck === true ? stack.map((stacks,index)=>{
             return(
                 <div key={index} className="company-stacks" onClick={handleStack}>{stacks.name}</div>
@@ -167,7 +193,7 @@ const CompanyWrite = () => {
           {gotGroup1 === "" ? null : <div onClick={openGroup2} className="company-stack">직군2</div>}
           {groupCheck2 === true ? group2.map((groups,index)=>{
             return(
-                <div key={index} className="company-stacks" onClick={handleGroup2(groups.code)}>{groups.name}</div>
+                <div key={index} className="company-stacks" onClick={()=>handleGroup2(groups.code)}>{groups.name}{groups.code}</div>
             )}) : null}
           <button type="submit">제출하기</button>
         </form>
