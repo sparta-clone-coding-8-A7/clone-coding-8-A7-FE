@@ -1,15 +1,11 @@
 // eslint-disable-next-line
 
 import React, { useEffect } from "react";
-
 import "./JobDetailLike.scss";
-
 import heart from "../../assets/heart.png";
 import love from "../../assets/love.png";
-
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   __toggleLike,
   __getToggleLike,

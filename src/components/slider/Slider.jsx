@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
@@ -8,24 +10,23 @@ import "./Slider.scss";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
-
-const imgDir = [{
-    image: "../../assets/optimize1.webp"
+const imgDir = [
+  {
+    image: "../../assets/optimize1.webp",
   },
   {
-    image: "../../assets/optimize2.webp"
+    image: "../../assets/optimize2.webp",
   },
   {
-    image: "../../assets/optimize3.webp"
+    image: "../../assets/optimize3.webp",
   },
   {
-    image: "../../assets/optimize4.webp"
-  }
-]
+    image: "../../assets/optimize4.webp",
+  },
+];
 const Slidercard = () => {
-  
   return (
-    <div className='slider'>
+    <div className="slider">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -39,16 +40,16 @@ const Slidercard = () => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper">
-            {imgDir.map((img,index)=>{
-              return(
-                <SwiperSlide key={index}>
-                  <img className='items-view' src={img.image}></img>          
-                </SwiperSlide>
-              )
-            })}
-        </Swiper>
+        {imgDir.map((img, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <img className="items-view" src={img.image}></img>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
-  )
-}
+  );
+};
 
-export default Slidercard
+export default Slidercard;
