@@ -54,8 +54,10 @@ const Header = () => {
           <div className="header-content">
             <nav className="nav-bar">
               <div className="right-content">
-                <img className="logo" src={hamburger}></img>
-                <div className="wanted">wanted</div>
+                <img className="logo" src={hamburger} alt="logoHamburger"></img>
+                <div className="wanted">
+                  <a href="/">wanted</a>
+                </div>
               </div>
               <ul className="center-content">
                 <li className="navbar-item">
@@ -73,7 +75,8 @@ const Header = () => {
                     <img
                       className="magnifier"
                       onClick={handleSearch}
-                      src={magnifier}></img>
+                      src={magnifier}
+                      alt="search"></img>
                   </li>
                   {!localStorage.getItem("authorization") === true &&
                   !localStorage.getItem("refreshtoken") === true ? (
