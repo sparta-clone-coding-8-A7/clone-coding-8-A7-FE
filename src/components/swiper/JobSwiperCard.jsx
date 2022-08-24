@@ -58,7 +58,7 @@ const JobSwiperCard = () => {
           companies.imgUrlList.map((image, index) => {
             return (
               <SwiperSlide className="image" key={index}>
-                <img src={image} alt="imageSlide" />
+                <img src={image.imgUrl} alt="imageSlide" />
               </SwiperSlide>
             );
           })}
