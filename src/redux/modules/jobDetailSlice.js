@@ -4,10 +4,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const dataServer = process.env.REACT_APP_DATA;
+const dataJi = process.env.REACT_APP_JI;
 
 const initialState = {
   user: {},
-  file: [],
+  // file: [],
   companyDetail: [],
   isLike: true,
   isLoading: false,

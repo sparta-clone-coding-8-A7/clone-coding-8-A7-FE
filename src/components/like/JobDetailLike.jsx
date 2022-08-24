@@ -17,9 +17,9 @@ const JobDetailLike = () => {
   const dispatch = useDispatch();
 
   const isLike = useSelector((state) => state.jobDetailSlice.like);
-  // console.log(isLike);
+  console.log(isLike);
   const likeNumber = useSelector((state) => state.jobDetailSlice.likeNum);
-  // console.log(likeNumber);
+  console.log(likeNumber);
 
   const onisLike = async () => {
     dispatch(__toggleLike(parseInt(id.id)));
