@@ -9,7 +9,8 @@ const dataJi = process.env.REACT_APP_JI;
 const initialState = {
   user: {},
   companyDetail: [],
-  isLike: true,
+  isLike: {},
+  isNum: {},
   isLoading: false,
   success: null,
   error: null,
@@ -89,6 +90,34 @@ const initialState = {
 //   }
 // );
 
+export const __toggleLikeNum = createAsyncThunk(
+  "like/__toggleLikeNum",
+  async (payload, thunkAPI) => {
+    try {
+      const jobPostId = payload;
+      console.log(payload);
+      const Refreshtoken = localStorage.getItem("refreshtoken");
+      const Authorization = localStorage.getItem("authorization");
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `${Authorization}`,
+        Refreshtoken: `${Refreshtoken}`,
+      };
+      const response = await axios.get(
+        // dataServer + `/jobPost/${jobPostId}/heart`,
+        dataJi + `/jobPost/${jobPostId}/heart`,
+        {},
+        { headers: headers }
+      );
+      // console.log(response.data);
+      console.log(response.data.data);
+      return thunkAPI.fulfillWithValue(response.data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const __toggleLike = createAsyncThunk(
   "like/__toggleLike",
   async (payload, thunkAPI) => {
@@ -108,8 +137,9 @@ export const __toggleLike = createAsyncThunk(
         {},
         { headers: headers }
       );
-      console.log(response.data);
-      return thunkAPI.fulfillWithValue(response.data);
+      // console.log(response.data);
+      console.log(response.data.data);
+      return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -174,12 +204,29 @@ export const jobDetailSlice = createSlice({
     //   state.user = [];
     //   state.error = action.payload;
     // },
+    [__toggleLikeNum.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__toggleLikeNum.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isNum = action.payload;
+      console.log(action.payload);
+      console.log(state.isLike);
+      // state.isLike.push(action.payload);
+    },
+    [__toggleLikeNum.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
     [__toggleLike.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__toggleLike.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isLike = action.payload;
+      console.log(action.payload);
+      console.log(state.isLike);
+      // state.isLike.push(action.payload);
     },
     [__toggleLike.rejected]: (state, action) => {
       state.isLoading = false;
