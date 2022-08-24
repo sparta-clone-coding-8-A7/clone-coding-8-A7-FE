@@ -12,7 +12,7 @@ const Cards = () => {
   const location = useLocation();
   const { state } = location; // 검색후 메인은 무한 그냥 메인은 false
   const [infinite, setInfinite] = useState(false); // 검색후 메인은 무한 그냥 메인은 false
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [prevY, setPrevY] = useState(0);
@@ -42,7 +42,7 @@ const Cards = () => {
     //     .catch((error) => console.log("error:", error));
     try {
       const resp = await axios.get(
-        `http://54.180.112.137:9990/api/jobPost?index=0&size=12`,
+        `http://54.180.112.137:9990/api/jobPost?size=7`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,11 @@ const Cards = () => {
           },
         }
       );
-      setData((prev) => [...prev, ...dataRef.current, ...resp.data.results]); // 0  12  24  36
+      setData((prev) => [
+        ...prev,
+        ...dataRef.current,
+        // ...resp.data.data.jobPostResponseDto,
+      ]); // 0  12  24  36
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -71,7 +75,7 @@ const Cards = () => {
   const loadingData2 = async () => {
     try {
       const resp = await axios.get(
-        `http://54.180.112.137:9990/api/jobPost?index=0&size=12`,
+        `http://54.180.112.137:9990/api/jobPost?size=7`,
         {
           // 메인 초기 데이터
           headers: {
@@ -81,8 +85,13 @@ const Cards = () => {
           },
         }
       );
-      console.log(resp.data.data);
-      setData((prev) => [...prev, ...dataRef.current, ...resp.data.data]);
+      console.log([resp.data.data]);
+
+      setData((prev) => [
+        ...prev,
+        ...dataRef.current,
+        // ...resp.data.data.jobPostResponseDto,
+      ]);
     } catch (error) {
       console.log(error);
       return error;
@@ -105,6 +114,7 @@ const Cards = () => {
       observer.observe(loadingRef.current);
     }
   }, []);
+  console.log(data);
   return (
     <div className="cards">
       {data &&
@@ -112,7 +122,7 @@ const Cards = () => {
           return (
             <a key={index} href={`/jobpost/${user.id}`} className="card-item">
               <div className="card-item-list">
-                <img src={user.imgUrl}></img>
+                <img src={user.imgUrl} alt="imag"></img>
                 <div className="card-title">{user.position}</div>
                 <div className="card-company">{user.name}</div>
                 <div className="company-region">{user.location}</div>
