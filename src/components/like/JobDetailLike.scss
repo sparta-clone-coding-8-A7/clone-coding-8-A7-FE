@@ -9,5 +9,9 @@
     padding: 5px 15px;
     float: left;
     width: 15px;
+    p {
+      display: inline;
+      vertical-align: sub;
+    }
   }
 }

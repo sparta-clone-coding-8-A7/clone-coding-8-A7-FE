@@ -54,7 +54,7 @@ const JobDetailLike = () => {
             src={heart}
             alt="heart"
           />
-          {postlikeNumber ? postlikeNumber : `${isNumber}`}
+          <p>{postlikeNumber ? postlikeNumber : `${isNumber}`}</p>
         </>
       ) : (
         <>
@@ -64,7 +64,7 @@ const JobDetailLike = () => {
             src={love}
             alt="love"
           />
-          {postlikeNumber ? postlikeNumber : `${isNumber}`}
+          <p>{postlikeNumber ? postlikeNumber : `${isNumber}`}</p>
         </>
       )}
     </div>
