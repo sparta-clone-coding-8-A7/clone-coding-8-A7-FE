@@ -5,9 +5,11 @@ import axios from 'axios';
 import "./Cards.scss"
 
 const Cards = () => {
+    let auth = localStorage.getItem("authorization")
+    let token1 = localStorage.getItem("refreshtoken")
     const location = useLocation()
     const {state} = location // 검색후 메인은 무한 그냥 메인은 false
-    const [infinite,setInfinite] = useState(false) // 검색후 메인은 무한 그냥 메인은 false
+    const [infinite,setInfinite] = useState(true) // 검색후 메인은 무한 그냥 메인은 false
     const [data, setData] = useState([]);
     const [page,setPage] = useState(1)
     const [loading,setLoading] = useState(true)
@@ -24,15 +26,28 @@ const Cards = () => {
 
     const loadingData = async () => {
         setLoading(true)
-        try{
-            const resp = await axios.get(`https://pokeapi.co/api/v2/ability/?limit=20&offset=${pageRef.current}`,{
-        })
-            setData(prev=>[...prev, ...dataRef.current, ...resp.data.results])
-            setLoading(false)
-        }catch(error){
-            console.log(error);
-            return error
-        }
+        // const response = await fetch(`http://54.180.112.137:9990/api/jobPost?index=0&size=4`,{
+        //     method:"GET",
+        //     headers:{
+        //         "Content-Type": "application/json",
+        //         "Authorization":auth,
+        //         "RefreshToken":token1
+        //     }
+        // })
+        // console.log(response)
+        // return response
+        //     .then((response) => console.log("response:", response))
+        //     .catch((error) => console.log("error:", error));
+        // try{
+        //     const resp = await axios.get(`http://54.180.112.137:9990/api/jobPost?index=${pageRef.current}&size=12`)
+        //     setData(prev=>[...prev, ...dataRef.current, ...resp.data.results])                  // 0  12  24  36
+        //     setLoading(false)
+            
+            
+        // }catch(error){
+        //     console.log(error);
+        //     return error
+        // }
     }
     const handleObserver = (entities, observer) => {
         const y = entities[0].boundingClientRect.y
@@ -54,11 +69,12 @@ const Cards = () => {
             return error
         }
     }
+    console.log(state)
     useEffect(()=>{
-        if (state === null){
-            loadingData2()
-        }
-        else{
+        // if (state === null){
+        //     loadingData2()
+        // }
+        if (infinite===true){
             loadingData()
             setPage(pageRef.current + 1)
             let options = {

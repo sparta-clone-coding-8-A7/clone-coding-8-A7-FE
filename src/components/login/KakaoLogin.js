@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect } from 'react'
+import { useNavigate , useLocation } from 'react-router-dom';
+import axios from "axios"
+import Header from '../header/Header';
 
 const KakaoLogin = () => {
   const location = useLocation();
@@ -26,10 +27,14 @@ const KakaoLogin = () => {
       console.log(error);
     }
   };
-  useEffect(() => {
-    postCode();
-  }, []);
-  return <div className="kakaologin"></div>;
-};
+    useEffect(()=>{
+        postCode()
+    },[])
+  return (
+    <div className='kakaologin'>
+        <Header></Header>
+    </div>
+  )
+}
 
 export default KakaoLogin;
