@@ -25,7 +25,7 @@ const Header = () => {
     let auth = localStorage.getItem("authorization")
     let refresh = localStorage.getItem("refreshtoken")
     try{
-      await axios.post(`http://54.180.112.137:9990/api/user/logout`,{},{ // 로그아웃
+      await axios.post(`http://13.209.42.76:8080/api/user/logout`,{},{ // 로그아웃
         headers:{
           "Content-Type": "application/json",
           "Authorization":auth,
@@ -54,35 +54,16 @@ const Header = () => {
             <ul className='center-content'>
               <li className="navbar-item"><a href='/'>채용</a></li>
               <li className="navbar-item"><a href='/companypage'>채용등록</a></li>
-              {/* <li className="navbar-item"><a href='/'>채용</a></li>
-              <li className="navbar-item"><a href='/'>채용</a></li> */}
             </ul>
             <div className='left-content'>
               <ul className='left-tag'>
                 <li className='left-tags'><img className='magnifier' onClick={handleSearch} src={magnifier}></img></li>
                 {!localStorage.getItem("authorization") === true && !localStorage.getItem("refreshtoken") === true ?
-                  <li className='left-tags'><div onClick={handleLogin}>회원가입/로그인</div></li> : 
-                <li className='left-tags'><div onClick={handleLogOut}>LogOut</div></li>}
+                  <li className='left-tags'><div className='sign-in' onClick={handleLogin}>회원가입/로그인</div></li> : 
+                <li className='left-tags'><div className='sign-in' onClick={handleLogOut}>LogOut</div></li>}
                 <li className='left-btn'><a href='/'><button className='anchor'>기업 서비스</button></a></li>
               </ul>
-              <div className="left-content">
-                <ul className="left-tag">
-                  <li className="left-tags">
-                    <img
-                      className="magnifier"
-                      onClick={handleSearch}
-                      src={magnifier}></img>
-                  </li>
-                  <li className="left-tags">
-                    <a href="/">회원가입/로그인</a>
-                  </li>
-                  <li className="left-btn">
-                    <a href="/">
-                      <button className="anchor">기업 서비스</button>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+            </div>
             </nav>
           </div>
         </div>
