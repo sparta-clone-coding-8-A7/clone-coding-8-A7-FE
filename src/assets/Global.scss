@@ -53,7 +53,6 @@
           :hover {
             box-shadow: inset 0 -2px #258bf7;
           }
-
           a {
             text-decoration: none;
             position: relative;
@@ -73,7 +72,6 @@
           list-style: none;
           display: flex;
           height: 100%;
-
           .left-tags {
             position: relative;
             display: inline-block;
@@ -117,14 +115,12 @@
                 border: 1px solid #e1e2e3;
                 cursor: pointer;
               }
-
               .left-content {
                 height: 100%;
                 .left-tag {
                   list-style: none;
                   display: flex;
                   height: 100%;
-
                   .left-tags {
                     position: relative;
                     display: inline-block;
@@ -195,11 +191,10 @@
     }
   }
 }
-/// else
-// .none{
-//     display: none;
-// }
-
+.sign-in {
+  margin-top: 5px;
+  margin-left: 5px;
+}
 /// 중간 버튼
 .bigbtn {
   display: flex;
@@ -221,7 +216,7 @@
   padding: 21px 30px;
   font-size: 18px;
   line-height: normal;
-  width: 75%;
+  width: 55%;
   margin: 0 auto;
   margin-bottom: 70px;
   .magnifi {
@@ -233,7 +228,6 @@
   width: 80%;
   margin: 0 auto;
 }
-
 /// 아래 지점
 .footer__container {
   width: 100%;
@@ -317,8 +311,20 @@
     padding: 130px;
   }
 }
-
 @media (max-width: 767px) {
+  .header {
+    .header-content {
+      height: 110px;
+      .nav-bar {
+        .right-content {
+        }
+        .center-content {
+        }
+        .left-content {
+        }
+      }
+    }
+  }
   .footer__container {
     // padding: 30px 25px 50px;
     &__top {
@@ -353,6 +359,17 @@
         margin-bottom: 30px;
         line-height: 1.5;
       }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .header {
+    .header-content {
+      width: 90%;
+      max-width: 1060px;
+      margin: 0 auto;
+      height: 50px;
     }
   }
 }

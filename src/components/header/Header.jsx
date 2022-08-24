@@ -27,7 +27,6 @@ const Header = () => {
       await axios.post(
         `http://54.180.112.137:9990/api/user/logout`,
         // `http://13.209.42.76:8080/api/user/logout`,
-
         {},
         {
           // 로그아웃
@@ -79,11 +78,15 @@ const Header = () => {
                   {!localStorage.getItem("authorization") === true &&
                   !localStorage.getItem("refreshtoken") === true ? (
                     <li className="left-tags">
-                      <div onClick={handleLogin}>회원가입/로그인</div>
+                      <div onClick={handleLogin} className="sign-in">
+                        회원가입/로그인
+                      </div>
                     </li>
                   ) : (
                     <li className="left-tags">
-                      <div onClick={handleLogOut}>LogOut</div>
+                      <div onClick={handleLogOut} className="sign-in">
+                        LogOut
+                      </div>
                     </li>
                   )}
                   <li className="left-btn">
