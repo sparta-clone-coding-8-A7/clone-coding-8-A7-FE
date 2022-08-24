@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+// eslint-disable-next-line
+
+import React, { useState } from "react";
 import "../../assets/Global.scss";
 import hamburger from "../../assets/optimize.png";
 import magnifier from "../../assets/Magnifier.png";

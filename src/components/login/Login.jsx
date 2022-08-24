@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 import React from "react";
 import kakao from "../../assets/kakao2.png";
 import "./Login.scss";

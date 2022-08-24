@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+// eslint-disable-next-line
+
+import React from "react";
 import Slidercard from "../components/slider/Slider";
 import Cards from "../components/cards/Cards";
 import logo from "../assets/magnifi.png";
