@@ -8,7 +8,6 @@ const dataJi = process.env.REACT_APP_JI;
 
 const initialState = {
   user: {},
-  // file: [],
   companyDetail: [],
   isLike: true,
   isLoading: false,
@@ -104,7 +103,8 @@ export const __toggleLike = createAsyncThunk(
         Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.post(
-        dataServer + `/jobPost/${jobPostId}/heart`,
+        // dataServer + `/jobPost/${jobPostId}/heart`,
+        dataJi + `/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
@@ -121,7 +121,7 @@ export const __getCompanyDetail = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const jobPostId = payload;
-      console.log(payload);
+      // console.log(payload);
       const Refreshtoken = localStorage.getItem("refreshtoken");
       const Authorization = localStorage.getItem("authorization");
 
@@ -131,12 +131,13 @@ export const __getCompanyDetail = createAsyncThunk(
         Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.get(
-        dataServer + `/jobPost/${jobPostId}`,
+        // dataServer + `/jobPost/${jobPostId}`,
+        dataJi + `/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
       // console.log(response);
-      return thunkAPI.fulfillWithValue(response.data);
+      return thunkAPI.fulfillWithValue(response.data.data);
       // return thunkAPI.fulfillWithValue(response.data.id);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 // import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./JobResumeCard.scss";
 
@@ -30,6 +30,8 @@ const JobResumeCard = () => {
     setIsFilePicked(true);
   };
   console.log(selectedFile);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,6 +61,8 @@ const JobResumeCard = () => {
         }
       );
       console.log(response);
+      window.alert("지원이 완료되었습니다");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

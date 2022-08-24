@@ -41,8 +41,8 @@ const CompanyDetailCard = () => {
         <h6>마감일</h6>
         <p>{companies.deadline}</p>
         <h6>기술스택</h6>
-        {companies.stack &&
-          companies.stack.map((company, i) => {
+        {/* {companies.stacks &&
+          companies.stacks.map((company, i) => {
             return (
               <div className="companyDetailCard__Container__stackList" key={i}>
                 <div className="companyDetailCard__Container__stackList__skill">
@@ -50,7 +50,7 @@ const CompanyDetailCard = () => {
                 </div>
               </div>
             );
-          })}
+          })} */}
       </div>
     </div>
   );
