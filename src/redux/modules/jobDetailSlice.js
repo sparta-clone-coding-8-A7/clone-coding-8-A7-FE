@@ -4,58 +4,59 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const dataServer = process.env.REACT_APP_DATA;
+const dataJi = process.env.REACT_APP_JI;
 
 const initialState = {
   user: {},
-  file: [],
   companyDetail: [],
-  isLike: true,
+  isLike: {},
+  isNum: {},
   isLoading: false,
   success: null,
   error: null,
 };
 
-export const __uploadFile = createAsyncThunk(
-  // action type string
-  "detail/__uploadFile",
-  // callback function
-  async (payload, thunkAPI) => {
-    try {
-      const fileUpload = payload.fileUpload;
-      console.log(fileUpload);
-      const username = payload.username;
-      console.log(username);
-      const email = payload.email;
-      console.log(email);
-      const jobPostId = payload.jobPostId;
-      console.log(jobPostId);
+// export const __uploadFile = createAsyncThunk(
+//   // action type string
+//   "detail/__uploadFile",
+//   // callback function
+//   async (payload, thunkAPI) => {
+//     try {
+//       const multipartFile = payload.formData;
+//       // console.log(multipartFile);
+//       const name = payload.name;
+//       // console.log(name);
+//       const email = payload.email;
+//       // console.log(email);
+//       // const jobPostId = payload.jobPostId;
+//       // console.log(jobPostId);
 
-      const Refreshtoken = localStorage.getItem("refreshtoken");
-      const Authorization = localStorage.getItem("authorization");
+//       // const Refreshtoken = localStorage.getItem("refreshtoken");
+//       // const Authorization = localStorage.getItem("authorization");
 
-      const headers = {
-        "Content-Type": "multipart/form-data",
-        Authorization: `${Authorization}`,
-        Refreshtoken: `${Refreshtoken}`,
-      };
-      // make request to backend
-      const response = await axios.post(
-        dataServer + `/jobPost/${jobPostId}/apply`,
-        {
-          // data: formData,
-          fileUpload: fileUpload,
-          username: username,
-          email: email,
-        },
-        { headers: headers }
-      );
-      console.log(response);
-      return thunkAPI.fulfillWithValue(response.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//       const headers = {
+//         "Content-Type": "multipart/form-data",
+//         // Authorization: `${Authorization}`,
+//         // Refreshtoken: `${Refreshtoken}`,
+//       };
+//       // make request to backend
+//       const response = await axios.post(
+//         dataServer + `/mail`,
+//         {
+//           // data: formData,
+//           multipartFile,
+//           email,
+//           name,
+//         },
+//         { headers: headers }
+//       );
+//       // console.log(response);
+//       return thunkAPI.fulfillWithValue(response.data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 // export const __getUserInfo = createAsyncThunk(
 //   // action type string
@@ -89,6 +90,32 @@ export const __uploadFile = createAsyncThunk(
 //   }
 // );
 
+export const __getToggleLike = createAsyncThunk(
+  "like/__getToggleLike",
+  async (payload, thunkAPI) => {
+    try {
+      const jobPostId = payload;
+      console.log(payload);
+      const id = localStorage.getItem("id");
+      console.log(id);
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      const response = await axios.get(
+        // dataServer + `/jobPost/${jobPostId}/heart`,
+        dataJi + `/jobPost/${jobPostId}/heart?id=${id}`,
+        {},
+        { headers: headers }
+      );
+      // console.log(response.data);
+      console.log(response.data.data);
+      return thunkAPI.fulfillWithValue(response.data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const __toggleLike = createAsyncThunk(
   "like/__toggleLike",
   async (payload, thunkAPI) => {
@@ -103,12 +130,14 @@ export const __toggleLike = createAsyncThunk(
         Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.post(
-        dataServer + `/jobPost/${jobPostId}/heart`,
+        // dataServer + `/jobPost/${jobPostId}/heart`,
+        dataJi + `/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
-      console.log(response.data);
-      return thunkAPI.fulfillWithValue(response.data);
+      // console.log(response.data);
+      console.log(response.data.data);
+      return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -120,7 +149,7 @@ export const __getCompanyDetail = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const jobPostId = payload;
-      console.log(payload);
+      // console.log(payload);
       const Refreshtoken = localStorage.getItem("refreshtoken");
       const Authorization = localStorage.getItem("authorization");
 
@@ -130,12 +159,13 @@ export const __getCompanyDetail = createAsyncThunk(
         Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.get(
-        dataServer + `/jobPost/${jobPostId}`,
+        // dataServer + `/jobPost/${jobPostId}`,
+        dataJi + `/jobPost/${jobPostId}`,
         {},
         { headers: headers }
       );
       // console.log(response);
-      return thunkAPI.fulfillWithValue(response.data);
+      return thunkAPI.fulfillWithValue(response.data.data);
       // return thunkAPI.fulfillWithValue(response.data.id);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -148,18 +178,18 @@ export const jobDetailSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: {
-    [__uploadFile.pending]: (state, action) => {
-      state.isLoading = true;
-    },
-    [__uploadFile.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.file = action.payload;
-    },
-    [__uploadFile.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.file = [];
-      state.err = action.payload;
-    },
+    // [__uploadFile.pending]: (state, action) => {
+    //   state.isLoading = true;
+    // },
+    // [__uploadFile.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.file = action.payload;
+    // },
+    // [__uploadFile.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.file = [];
+    //   state.err = action.payload;
+    // },
     // [__getUserInfo.pending]: (state, action) => {
     //   state.isLoading = true;
     // },
@@ -172,12 +202,27 @@ export const jobDetailSlice = createSlice({
     //   state.user = [];
     //   state.error = action.payload;
     // },
+    [__getToggleLike.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__getToggleLike.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isNum = action.payload;
+      console.log(action.payload);
+      console.log(state.isLike);
+      // state.isLike.push(action.payload);
+    },
+    [__getToggleLike.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
     [__toggleLike.pending]: (state, action) => {
       state.isLoading = true;
     },
     [__toggleLike.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isLike = action.payload;
+      console.log(action.payload);
     },
     [__toggleLike.rejected]: (state, action) => {
       state.isLoading = false;

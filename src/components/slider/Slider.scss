@@ -1,6 +1,8 @@
-.slider{
+.slider {
   padding: 30px 60px 0 60px;
   margin-bottom: 70px;
+  position: relative;
+  top: 20px;
 }
 .swiper {
   width: 100%;
@@ -26,7 +28,7 @@
   align-items: center;
 }
 
-.swiper-pagination-bullets{
+.swiper-pagination-bullets {
   display: none;
 }
 
@@ -37,6 +39,7 @@
   object-fit: cover;
 }
 
-.swiper-button-prev,.swiper-button-next{
+.swiper-button-prev,
+.swiper-button-next {
   color: white;
 }

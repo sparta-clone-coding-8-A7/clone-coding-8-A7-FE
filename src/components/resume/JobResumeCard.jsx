@@ -1,26 +1,29 @@
 // eslint-disable-next-line
 
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./JobResumeCard.scss";
 
-import { __uploadFile } from "../../redux/modules/jobDetailSlice";
+// import { __uploadFile } from "../../redux/modules/jobDetailSlice";
 
 import JobDetailLike from "../like/JobDetailLike";
+import axios from "axios";
 
 const JobResumeCard = () => {
+  const dataServer = process.env.REACT_APP_DATA;
+
   const { id } = useParams();
   const jobPostId = parseInt(id);
+
+  console.log(jobPostId);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
 
-  const username = localStorage.getItem("username");
+  const name = localStorage.getItem("username");
   const email = localStorage.getItem("email");
-
-  const dispatch = useDispatch();
 
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -28,18 +31,41 @@ const JobResumeCard = () => {
   };
   console.log(selectedFile);
 
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const fileUpload = new FormData();
-    fileUpload.append("selectedFile", selectedFile);
-    for (let value of fileUpload.values()) {
+
+    const formData = new FormData();
+    formData.append("formData", selectedFile);
+    formData.append("name", localStorage.getItem("username"));
+    formData.append("email", localStorage.getItem("email"));
+
+    console.log([...formData]);
+
+    for (let value of formData.values()) {
       console.log(value);
     }
 
-    const username = localStorage.getItem("username");
-    const email = localStorage.getItem("email");
+    try {
+      // const Refreshtoken = localStorage.getItem("refreshtoken");
+      // const Authorization = localStorage.getItem("authorization");
 
-    dispatch(__uploadFile({ fileUpload, username, email, jobPostId }));
+      const response = await axios.post(
+        dataServer + `/jobPost/${jobPostId}/apply`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+      window.alert("지원이 완료되었습니다");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -51,7 +77,7 @@ const JobResumeCard = () => {
           className="jobApplyCard_Container__userContainer__username">
           <h4>이름</h4>
           <div className="jobApplyCard_Container__userContainer__username__name">
-            {username}
+            {name}
           </div>
         </label>
         <label
@@ -64,7 +90,7 @@ const JobResumeCard = () => {
         </label>
       </div>
       <div className="jobApplyCard_Container__fileContainer">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="form">
           <input
             type="file"
             name="file"
