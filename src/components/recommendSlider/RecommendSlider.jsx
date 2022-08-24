@@ -29,7 +29,7 @@ const RecommendSlider = () => {
         }
     } 
     useEffect(()=>{
-      response()
+      // response()
     },[])
     return (
     <div className='recommendation'>

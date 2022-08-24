@@ -5,11 +5,11 @@ import axios from 'axios';
 import "./Cards.scss"
 
 const Cards = () => {
-    let auth = localStorage.getItem("authorization")
-    let token1 = localStorage.getItem("refreshtoken")
+    // let auth = localStorage.getItem("authorization")
+    // let token1 = localStorage.getItem("refreshtoken")
     const location = useLocation()
     const {state} = location // 검색후 메인은 무한 그냥 메인은 false
-    const [infinite,setInfinite] = useState(true) // 검색후 메인은 무한 그냥 메인은 false
+    const [infinite,setInfinite] = useState(false) // 검색후 메인은 무한 그냥 메인은 false
     const [data, setData] = useState([]);
     const [page,setPage] = useState(1)
     const [loading,setLoading] = useState(true)
@@ -38,16 +38,22 @@ const Cards = () => {
         // return response
         //     .then((response) => console.log("response:", response))
         //     .catch((error) => console.log("error:", error));
-        // try{
-        //     const resp = await axios.get(`http://54.180.112.137:9990/api/jobPost?index=${pageRef.current}&size=12`)
-        //     setData(prev=>[...prev, ...dataRef.current, ...resp.data.results])                  // 0  12  24  36
-        //     setLoading(false)
+        try{
+            const resp = await axios.get(`http://54.180.112.137:9990/api/jobPost?index=0&size=12`,{
+                headers:{
+                        "Content-Type": "application/json",
+                        // "Authorization":auth,
+                        // "RefreshToken":token1
+                    }
+            })
+            setData(prev=>[...prev, ...dataRef.current, ...resp.data.results])                  // 0  12  24  36
+            setLoading(false)
             
             
-        // }catch(error){
-        //     console.log(error);
-        //     return error
-        // }
+        }catch(error){
+            console.log(error);
+            return error
+        }
     }
     const handleObserver = (entities, observer) => {
         const y = entities[0].boundingClientRect.y
@@ -61,9 +67,15 @@ const Cards = () => {
     }
     const loadingData2 = async () => {
         try{
-            const resp = await axios.get(`https://pokeapi.co/api/v2/ability/?limit=12&offset=1`,{ // 메인 초기 데이터
+            const resp = await axios.get(`http://54.180.112.137:9990/api/jobPost?index=0&size=12`,{ // 메인 초기 데이터
+                headers:{
+                    "Content-Type": "application/json",
+                    // "Authorization":auth,
+                    // "RefreshToken":token1
+                }
         })
-        setData(prev=>[...prev, ...dataRef.current, ...resp.data.results])
+        console.log(resp.data.data)
+        setData(prev=>[...prev, ...dataRef.current, ...resp.data.data])
         }catch(error){
             console.log(error);
             return error
@@ -71,9 +83,9 @@ const Cards = () => {
     }
     console.log(state)
     useEffect(()=>{
-        // if (state === null){
-        //     loadingData2()
-        // }
+        if (state === null){
+            loadingData2()
+        }
         if (infinite===true){
             loadingData()
             setPage(pageRef.current + 1)
@@ -91,13 +103,13 @@ const Cards = () => {
         <div className='cards'>
             {data && data.map((user,index)=>{
                 return(
-                    <a key={index} href='/' className='card-item'>
+                    <a key={index} href={`/jobpost/${user.id}`} className='card-item'>
                         <div className='card-item-list'>
-                            <img src={exImg}></img>
-                            <div className='card-title'>Web 프론트엔드 개발자</div>
-                            <div className='card-company'>항해99</div>
-                            <div className='company-region'>서울 한국</div>
-                            <div className='company-pay'>열정페이</div>
+                            <img src={user.imgUrl}></img>
+                            <div className='card-title'>{user.position}</div>
+                            <div className='card-company'>{user.name}</div>
+                            <div className='company-region'>{user.location}</div>
+                            {/* <div className='company-pay'>{}</div> */}
                         </div>
                     </a>
                 )
