@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from "react";
 import "./CompanyWrite.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CompanyWrite = () => {
     const [stack,setStack] = useState(null)
@@ -12,7 +13,9 @@ const CompanyWrite = () => {
     const [gotStack, setGotStack] = useState([])
     const [gotGroup1, setGotGroup1] = useState("")
     const [gotGroup2, setGotGroup2] = useState("")
+    const [imageList,setImageList] = useState("")
 
+    const navigate = useNavigate()
     let auth = localStorage.getItem("authorization")
     let token1 = localStorage.getItem("refreshtoken")
     const [details,setDetails] = useState({
@@ -21,7 +24,7 @@ const CompanyWrite = () => {
         deadline : "",
     })
     const [selectedImages , setSelectedImages] = useState([])
-    const [imageStorage ,setImageStorage] = useState([])
+    const [imageStorage ,setImageStorage] = useState(null)
     const getStacks = async () => {
         try{
             const repo = await axios.get(`http://54.180.112.137:9990/api/company/jobPost/page/stackList`,{ // 직업군 카테고리 가져오기.
@@ -36,10 +39,13 @@ const CompanyWrite = () => {
             console.log(error)
         }
     }
-    const getImg = async () => {
+    const getImg = async (e) => {
+        e.preventDefault();
         const formData = new FormData()
-        formData.append("imgUrlList",imageStorage) // 이미지 선 업로드
-        console.log(imageStorage)
+        // formData.append("multipartFile",imageStorage)
+        for (let i = 0; i<imageStorage.length; i++){
+            formData.append("multipartFile",imageStorage[i])
+        }
         try{
             const repo = await axios.post(`http://54.180.112.137:9990/s3/file`,formData,{
             headers:{
@@ -48,7 +54,8 @@ const CompanyWrite = () => {
                 "RefreshToken":token1
             }
         })
-        console.log(repo)
+        setImageList(repo.data.data)
+        
         } catch(error){
             console.log(error)
         }
@@ -101,13 +108,13 @@ const CompanyWrite = () => {
         const formData = new FormData()
         formData.append("position",details.position)
         formData.append("content",details.content)
-        formData.append("imgUrlList",imageStorage)
+        formData.append("imgUrlList",imageList)
         formData.append("deadline",details.deadline)
         formData.append("stack",gotStack)
         formData.append("jobGroupId",gotGroup1)
         formData.append("jobDetailId",gotGroup2)
-        try{        // 채용공고 올리기
-            await axios.post(`http://54.180.112.137:9990/api/company/jobPost`,formData,{ 
+        try{        
+            await axios.post(`http://54.180.112.137:9990/api/company/jobPost`,formData,{ // 채용공고 올리기
                 headers:{
                 "Content-Type": "application/json",
                 "Authorization":auth,
@@ -128,11 +135,9 @@ const CompanyWrite = () => {
             return URL.createObjectURL(file);
         });
     }
-    const sendImage = () => {
-        getImg()
-    }
-    const handleStack = (e) => { // 스택 쌓기
-        setGotStack((prev)=>[...prev,e.target.textContent])
+    const handleStack = (id) => { // 스택 쌓기
+        setGotStack((prev)=>[...prev,id])
+        // setGotStack((prev)=>[...prev,e.target.textContent])
     }
     const handleGroup = (id) => { // 그룹 1
         setGotGroup1(id)
@@ -154,6 +159,7 @@ const CompanyWrite = () => {
     useEffect(()=>{
         if(!localStorage.getItem("authorization") === true || !localStorage.getItem("refreshtoken") === true){
             alert("로그인 후 이용해주세요.")
+            navigate("/")
         }else{
             getStacks()
             getGroup()
@@ -174,14 +180,14 @@ const CompanyWrite = () => {
         <form onSubmit={handleSubmit} className="company-write">
           <h3>포지션명</h3><input type="text" name="position" onChange={handleChange}></input>
           <h3>이미지</h3><input type="file" name="imgUrlList" multiple accept="image/png , image/jpeg , image/webp" onChange={onSelectFile}></input>
-          <div onClick={sendImage} className="company-btn">이미지 업로드</div>
+          <div onClick={getImg} className="company-btn">이미지 업로드</div>
           <h3>내용 작성</h3><input type="textarea" name="content" onChange={handleChange}></input>
           <h3>마감일</h3><input type="text" name="deadline" onChange={handleChange}></input>
           <div onClick={openStack} className="company-stack">스택</div>
           <div className="company-btn" onClick={openStack}>선택 완료</div>
           {stackCheck === true ? stack.map((stacks,index)=>{
             return(
-                <div key={index} className="company-stacks" onClick={handleStack}>{stacks.name}</div>
+                <div key={index} className="company-stacks" onClick={()=>handleStack(stacks.id)}>{stacks.name}</div>
             )}
             ) : null}
             
