@@ -9,9 +9,8 @@ const KakaoLogin = () => {
   const kakaoCode = location.search.split("=")[1];
   const postCode = async () => {
     try {
-      // const response = await axios.get(`http://54.180.112.137:9990/api/user/login?code=${kakaoCode}`,{ // 백엔드 보내기.
       const response = await axios.get(
-        `http://13.209.42.76:8080/api/user/login?code=${kakaoCode}`,
+        `http://54.180.112.137:9990/api/user/login?code=${kakaoCode}`,
         {
           // 백엔드 보내기.
         }
