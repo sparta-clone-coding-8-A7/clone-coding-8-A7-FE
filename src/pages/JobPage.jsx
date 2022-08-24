@@ -8,16 +8,18 @@ import Header from "../components/header/Header";
 
 const JobPage = () => {
   return (
-    <div className="jobPage_Container">
+    <>
       <Header></Header>
-      <div className="jobDetailLeft">
-        <JobSwiperCard />
-        <CompanyDetailCard />
+      <div className="jobPage_Container">
+        <div className="jobDetailLeft">
+          <JobSwiperCard />
+          <CompanyDetailCard />
+        </div>
+        <div className="jobDetailRight">
+          <JobResumeCard />
+        </div>
       </div>
-      <div className="jobDetailRight">
-        <JobResumeCard />
-      </div>
-    </div>
+    </>
   );
 };
 

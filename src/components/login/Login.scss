@@ -1,43 +1,78 @@
-.login{
-    .login-form{
-        top: 50%;
-        left: 50%;
-        position:absolute;
-        width: 300px;        
-        transform: translate(-50%,-50%);
-        height: 400px;
-        z-index: 901;
-        background-color: white;
-        .login-header{
-            margin: 0 auto;
-            height: 54px;
-            padding: 16px 20px;
-            border-bottom: 1px solid #ececce;
-            color: #333;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 600;
-            word-wrap: break-word;  
-            background-color: white;
-        }
-        .login-body{
-            background-color: #fff;
-            margin: 0 auto;
-            .kakao{
-                margin: 0 auto;
-                img{
-                    width: 30px;
-                }
-            }
-        }
+.login {
+  .login-form {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    max-height: calc(100vh - 150px);
+    height: 400px;
+    z-index: 901;
+    background-color: white;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow-y: auto;
+    overflow: hidden;
+    .login-header {
+      height: 54px;
+      padding: 16px 20px;
+      position: relative;
+      border-bottom: 1px solid #ececce;
+      color: #333;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 600;
+      word-wrap: break-word;
+      border-bottom: 0;
     }
-    .dark-mode{
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 900;
-        background-color: rgba(0,0,0,.5);
+    .login-body {
+      background-color: #fff;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      .login-text {
+        text-align: center;
+        word-break: break-word;
+        margin-bottom: 40px;
+        h1 {
+          line-height: 1.54;
+          font-size: 26px;
+          font-weight: 600;
+          color: #333;
+        }
+        h2 {
+          margin-top: 16px;
+          line-height: 1.5;
+          font-size: 16px;
+          font-weight: 400;
+          color: #666;
+        }
+      }
+      .kakao {
+        width: 25%;
+        margin: 0 auto;
+        text-align: center;
+        img {
+          width: 56px;
+          height: 56px;
+          margin: 0 auto 8px;
+          color: #737373;
+          border-radius: 28px;
+          cursor: pointer;
+        }
+        .kakao-name {
+        }
+      }
     }
+  }
+  .dark-mode {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 900;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }

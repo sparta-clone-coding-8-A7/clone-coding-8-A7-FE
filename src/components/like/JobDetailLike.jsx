@@ -21,20 +21,20 @@ const JobDetailLike = () => {
 
   // post
   const postisLike = useSelector((state) => state.jobDetailSlice.isLike.like);
-  console.log("postlike", postisLike);
+  // console.log("postlike", postisLike);
 
   // post
   const postlikeNumber = useSelector(
     (state) => state.jobDetailSlice.isLike.likeNum
   );
-  console.log("postnumber", postlikeNumber);
+  // console.log("postnumber", postlikeNumber);
 
   // get
   const isNumber = useSelector((state) => state.jobDetailSlice.isNum.likeNum);
-  console.log("isnumber", isNumber);
+  // console.log("isnumber", isNumber);
 
   const isLike = useSelector((state) => state.jobDetailSlice.isNum.like);
-  console.log("isLike", isLike);
+  // console.log("isLike", isLike);
 
   const onisLike = async () => {
     dispatch(__toggleLike(parseInt(id.id)));

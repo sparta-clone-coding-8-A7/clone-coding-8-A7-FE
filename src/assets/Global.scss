@@ -38,6 +38,11 @@
           font-weight: bold;
           cursor: pointer;
           padding: 14px;
+          text-decoration: none;
+          a {
+            text-decoration: none;
+            color: black;
+          }
         }
       }
       .center-content {
@@ -77,10 +82,13 @@
             display: inline-block;
             height: 100%;
             vertical-align: middle;
-            margin-top: 5px;
+            margin-top: 8px;
             .magnifier {
               margin-top: 2px;
               width: 22px;
+              cursor: pointer;
+            }
+            .sign-in {
               cursor: pointer;
             }
             a {

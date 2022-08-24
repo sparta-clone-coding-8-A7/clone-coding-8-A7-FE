@@ -1,12 +1,9 @@
 // eslint-disable-next-line
 
 import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 import "./JobResumeCard.scss";
-
-// import { __uploadFile } from "../../redux/modules/jobDetailSlice";
 
 import JobDetailLike from "../like/JobDetailLike";
 import axios from "axios";
@@ -17,7 +14,7 @@ const JobResumeCard = () => {
   const { id } = useParams();
   const jobPostId = parseInt(id);
 
-  console.log(jobPostId);
+  // console.log(jobPostId);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isFilePicked, setIsFilePicked] = useState(false);
@@ -29,7 +26,7 @@ const JobResumeCard = () => {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
-  console.log(selectedFile);
+  // console.log(selectedFile);
 
   const navigate = useNavigate();
 
@@ -41,16 +38,13 @@ const JobResumeCard = () => {
     formData.append("name", localStorage.getItem("username"));
     formData.append("email", localStorage.getItem("email"));
 
-    console.log([...formData]);
+    // console.log([...formData]);
 
-    for (let value of formData.values()) {
-      console.log(value);
-    }
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // }
 
     try {
-      // const Refreshtoken = localStorage.getItem("refreshtoken");
-      // const Authorization = localStorage.getItem("authorization");
-
       const response = await axios.post(
         dataServer + `/jobPost/${jobPostId}/apply`,
         formData,
@@ -60,7 +54,7 @@ const JobResumeCard = () => {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       window.alert("지원이 완료되었습니다");
       navigate("/");
     } catch (error) {
