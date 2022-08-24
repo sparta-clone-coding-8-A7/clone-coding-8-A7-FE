@@ -127,9 +127,7 @@
                     display: inline-block;
                     height: 100%;
                     vertical-align: middle;
-                    .sign-in{
-                      margin-top: 5px;
-                    }
+                    
                     .magnifier {
                       width: 22px;
                       cursor: pointer;
@@ -192,6 +190,11 @@
       }
     }
   }
+}
+.sign-in{
+  margin-left: 5px;
+  margin-top: 5px;
+  cursor: pointer;
 }
 /// else
 // .none{

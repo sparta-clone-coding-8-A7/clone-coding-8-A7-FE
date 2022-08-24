@@ -25,7 +25,7 @@ const Header = () => {
     let auth = localStorage.getItem("authorization")
     let refresh = localStorage.getItem("refreshtoken")
     try{
-      await axios.post(`http://13.209.42.76:8080/api/user/logout`,{},{ // 로그아웃
+      await axios.post(`http://54.180.112.137:9990/api/user/logout`,{},{ // 로그아웃
         headers:{
           "Content-Type": "application/json",
           "Authorization":auth,
