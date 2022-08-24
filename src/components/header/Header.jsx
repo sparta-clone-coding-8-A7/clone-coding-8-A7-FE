@@ -41,6 +41,7 @@ const Header = () => {
       localStorage.removeItem("email");
       localStorage.removeItem("authorization");
       localStorage.removeItem("refreshtoken");
+      localStorage.removeItem("id");
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   __toggleLike,
-  __toggleLikeNum,
+  __getToggleLike,
 } from "../../redux/modules/jobDetailSlice";
 
 const JobDetailLike = () => {
@@ -21,29 +21,32 @@ const JobDetailLike = () => {
 
   // post
   const postisLike = useSelector((state) => state.jobDetailSlice.isLike.like);
-  console.log(postisLike);
+  console.log("postlike", postisLike);
 
   // post
   const postlikeNumber = useSelector(
     (state) => state.jobDetailSlice.isLike.likeNum
   );
-  console.log(postlikeNumber);
+  console.log("postnumber", postlikeNumber);
 
   // get
-  const getIsNumber = useSelector((state) => state.jobDetailSlice.isNum);
-  console.log(getIsNumber);
+  const isNumber = useSelector((state) => state.jobDetailSlice.isNum.likeNum);
+  console.log("isnumber", isNumber);
+
+  const isLike = useSelector((state) => state.jobDetailSlice.isNum.like);
+  console.log("isLike", isLike);
 
   const onisLike = async () => {
     dispatch(__toggleLike(parseInt(id.id)));
   };
 
   useEffect(() => {
-    dispatch(__toggleLikeNum(parseInt(id.id)));
-  }, []);
+    dispatch(__getToggleLike(parseInt(id.id)));
+  }, [postisLike]);
 
   return (
     <div className="jobDetailLike__Container">
-      {postisLike && postisLike ? (
+      {postisLike || isLike ? (
         <>
           <img
             className="jobDetailLike__Container__likeHeart"
@@ -51,7 +54,7 @@ const JobDetailLike = () => {
             src={heart}
             alt="heart"
           />
-          {postlikeNumber ? postlikeNumber : `${getIsNumber}`}
+          {postlikeNumber ? postlikeNumber : `${isNumber}`}
         </>
       ) : (
         <>
@@ -61,7 +64,7 @@ const JobDetailLike = () => {
             src={love}
             alt="love"
           />
-          {postlikeNumber ? postlikeNumber : `${getIsNumber}`}
+          {postlikeNumber ? postlikeNumber : `${isNumber}`}
         </>
       )}
     </div>

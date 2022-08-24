@@ -90,22 +90,20 @@ const initialState = {
 //   }
 // );
 
-export const __toggleLikeNum = createAsyncThunk(
-  "like/__toggleLikeNum",
+export const __getToggleLike = createAsyncThunk(
+  "like/__getToggleLike",
   async (payload, thunkAPI) => {
     try {
       const jobPostId = payload;
       console.log(payload);
-      const Refreshtoken = localStorage.getItem("refreshtoken");
-      const Authorization = localStorage.getItem("authorization");
+      const id = localStorage.getItem("id");
+      console.log(id);
       const headers = {
         "Content-Type": "application/json",
-        Authorization: `${Authorization}`,
-        Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.get(
         // dataServer + `/jobPost/${jobPostId}/heart`,
-        dataJi + `/jobPost/${jobPostId}/heart`,
+        dataJi + `/jobPost/${jobPostId}/heart?id=${id}`,
         {},
         { headers: headers }
       );
@@ -204,17 +202,17 @@ export const jobDetailSlice = createSlice({
     //   state.user = [];
     //   state.error = action.payload;
     // },
-    [__toggleLikeNum.pending]: (state, action) => {
+    [__getToggleLike.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [__toggleLikeNum.fulfilled]: (state, action) => {
+    [__getToggleLike.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isNum = action.payload;
       console.log(action.payload);
       console.log(state.isLike);
       // state.isLike.push(action.payload);
     },
-    [__toggleLikeNum.rejected]: (state, action) => {
+    [__getToggleLike.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -225,8 +223,6 @@ export const jobDetailSlice = createSlice({
       state.isLoading = false;
       state.isLike = action.payload;
       console.log(action.payload);
-      console.log(state.isLike);
-      // state.isLike.push(action.payload);
     },
     [__toggleLike.rejected]: (state, action) => {
       state.isLoading = false;
