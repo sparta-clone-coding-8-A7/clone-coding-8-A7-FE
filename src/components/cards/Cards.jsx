@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-// import exImg from "../../assets/bookshelf.png";
 import axios from "axios";
 import "./Cards.scss";
 
@@ -31,25 +30,12 @@ const Cards = () => {
 
   const loadingData = async () => {
     setLoading(true);
-    // const response = await fetch(`http://54.180.112.137:9990/api/jobPost?index=0&size=4`,{
-    //     method:"GET",
-    //     headers:{
-    //         "Content-Type": "application/json",
-    //         "Authorization":auth,
-    //         "RefreshToken":token1
-    //     }
-    // })
-    // console.log(response)
-    // return response
-    //     .then((response) => console.log("response:", response))
-    //     .catch((error) => console.log("error:", error));
-
     try {
       const resp = await axios.get(dataServer + `/jobPost?size=8`, {
         headers: {
           "Content-Type": "application/json",
-          // Authorization: auth,
-          // RefreshToken: token1,
+          Authorization: auth,
+          RefreshToken: token1,
         },
       });
       const newResp = Object.keys(resp.data.data).map(
@@ -68,7 +54,6 @@ const Cards = () => {
       loadingData();
       setPage(pageRef.current + 1);
     } else {
-      console.log("Nothing");
     }
     setPrevY(y);
   };
@@ -87,7 +72,6 @@ const Cards = () => {
       const newResp = Object.keys(resp.data.data).map(
         (item) => resp.data.data[item]
       );
-      console.log(...newResp);
 
       setData((prev) => [...prev, ...dataRef.current, ...newResp]);
     } catch (error) {
@@ -95,9 +79,8 @@ const Cards = () => {
       return error;
     }
   };
-  console.log(state);
   useEffect(() => {
-    if (state === null) {
+    if (btnOn === false) {
       loadingData2();
     }
     if (infinite === true) {
@@ -112,7 +95,6 @@ const Cards = () => {
       observer.observe(loadingRef.current);
     }
   }, []);
-  console.log(data);
   return (
     <div className="cards">
       {data &&

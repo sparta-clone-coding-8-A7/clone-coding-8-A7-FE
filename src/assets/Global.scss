@@ -205,6 +205,10 @@
 }
 
 /// 중간 버튼
+.bigbtn-link{
+  width: 55%;
+  text-decoration: none;
+}
 .bigbtn {
   display: flex;
   flex-grow: 1;

@@ -8,6 +8,7 @@ import Search from "../search/Search";
 import Login from "../login/Login";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const Header = () => {
   const dataServer = process.env.REACT_APP_DATA;
 
@@ -69,8 +70,6 @@ const Header = () => {
                 <li className="navbar-item">
                   <a href="/companypage">채용등록</a>
                 </li>
-                {/* <li className="navbar-item"><a href='/'>채용</a></li>
-              <li className="navbar-item"><a href='/'>채용</a></li> */}
               </ul>
               <div className="left-content">
                 <ul className="left-tag">
