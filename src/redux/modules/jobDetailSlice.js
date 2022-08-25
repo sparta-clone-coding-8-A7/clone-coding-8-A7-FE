@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const dataServer = process.env.REACT_APP_DATA;
-// const dataJi = process.env.REACT_APP_JI;
+const dataJi = process.env.REACT_APP_JI;
 
 const initialState = {
   user: {},
@@ -22,17 +22,18 @@ export const __getToggleLike = createAsyncThunk(
     try {
       const jobPostId = payload;
       // console.log(payload);
-      const id = localStorage.getItem("id");
-      // console.log(id);
+      const memberId = localStorage.getItem("id");
+      console.log(memberId);
       const headers = {
         "Content-Type": "application/json",
       };
       const response = await axios.get(
-        dataServer + `/jobPost/${jobPostId}/heart?id=${id}`,
+        dataServer + `/jobPost/${jobPostId}/heart?id=${memberId}`,
+        // dataJi + `/jobPost/${jobPostId}/heart?id=${memberId}`,
         {},
         { headers: headers }
       );
-      // console.log(response.data.data);
+      console.log(response.data.data);
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
