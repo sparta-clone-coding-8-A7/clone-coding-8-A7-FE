@@ -2,16 +2,15 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import exImg from "../../assets/bookshelf.png";
 import axios from "axios";
 import "./Cards.scss";
 
-const Cards = () => {
+const Cards = ({btnOn,setBtnOn}) => {
+  const location = useLocation()
+  console.log(location.state)
+  
   let auth = localStorage.getItem("authorization");
   let token1 = localStorage.getItem("refreshtoken");
-
-  const location = useLocation();
-  const { state } = location; // 검색후 메인은 무한 그냥 메인은 false
   const [infinite, setInfinite] = useState(false); // 검색후 메인은 무한 그냥 메인은 false
   const [data, setData] = useState("");
   const [page, setPage] = useState(1);
@@ -29,26 +28,14 @@ const Cards = () => {
 
   const loadingData = async () => {
     setLoading(true);
-    // const response = await fetch(`http://54.180.112.137:9990/api/jobPost?index=0&size=4`,{
-    //     method:"GET",
-    //     headers:{
-    //         "Content-Type": "application/json",
-    //         "Authorization":auth,
-    //         "RefreshToken":token1
-    //     }
-    // })
-    // console.log(response)
-    // return response
-    //     .then((response) => console.log("response:", response))
-    //     .catch((error) => console.log("error:", error));
     try {
       const resp = await axios.get(
         `http://54.180.112.137:9990/api/jobPost?size=8`,
         {
           headers: {
             "Content-Type": "application/json",
-            // Authorization: auth,
-            // RefreshToken: token1,
+            Authorization: auth,
+            RefreshToken: token1,
           },
         }
       );
@@ -68,7 +55,6 @@ const Cards = () => {
       loadingData();
       setPage(pageRef.current + 1);
     } else {
-      console.log("Nothing");
     }
     setPrevY(y);
   };
@@ -85,12 +71,9 @@ const Cards = () => {
           },
         }
       );
-      console.log([resp.data.data]);
-
       const newResp = Object.keys(resp.data.data).map(
         (item) => resp.data.data[item]
       );
-      console.log(...newResp);
 
       setData((prev) => [...prev, ...dataRef.current, ...newResp]);
     } catch (error) {
@@ -98,12 +81,11 @@ const Cards = () => {
       return error;
     }
   };
-  console.log(state);
   useEffect(() => {
-    if (state === null) {
+    if (btnOn === false) {
       loadingData2();
     }
-    if (infinite === true) {
+    else{
       loadingData();
       setPage(pageRef.current + 1);
       let options = {
@@ -115,7 +97,6 @@ const Cards = () => {
       observer.observe(loadingRef.current);
     }
   }, []);
-  console.log(data);
   return (
     <div className="cards">
       {data &&
