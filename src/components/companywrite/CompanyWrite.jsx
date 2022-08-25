@@ -18,9 +18,9 @@ const CompanyWrite = () => {
   const [gotGroup1, setGotGroup1] = useState("");
   const [gotGroup2, setGotGroup2] = useState("");
   const [imageList, setImageList] = useState("");
-  
-  const [list1,setList1] = useState([])
-  const [fakeList,setFakeList1] = useState([])
+
+  const [list1, setList1] = useState([]);
+  const [fakeList, setFakeList1] = useState([]);
 
   const navigate = useNavigate();
   let auth = localStorage.getItem("authorization");
@@ -65,7 +65,7 @@ const CompanyWrite = () => {
           RefreshToken: token1,
         },
       });
-      
+
       setImageList(repo.data.data);
     } catch (error) {
       console.log(error);
@@ -129,16 +129,16 @@ const CompanyWrite = () => {
       alert("내용을 모두 입력해주세요.");
     }
     const formData = new FormData();
-    
+
     // const list1 = Object.values(imageList)
     // console.log("확인",typeof(list1))
     // for (let i = 0; i < imageList.length; i++) {
     //   setList1((prev)=>[...prev,imageList[i]])
     // }
-    let list1 = new Array
+    let list1 = new Array();
     for (let i = 0; i < gotStack.length; i++) {
       formData.append("stacks", gotStack[i]);
-    }    
+    }
     formData.append("position", details.position);
     formData.append("content", details.content);
     formData.append("imgUrlList", imageList);
@@ -151,8 +151,8 @@ const CompanyWrite = () => {
         // 채용공고 올리기
         headers: {
           "Content-Type": "application/json",
-          "Authorization": auth,
-          "RefreshToken": token1,
+          Authorization: auth,
+          RefreshToken: token1,
         },
       });
     } catch (error) {
@@ -218,22 +218,26 @@ const CompanyWrite = () => {
     <>
       <h2>작성</h2>
       <form onSubmit={handleSubmit} className="company-write">
-        <h3>포지션명</h3>
+        <label htmlFor="포지션명">포지션명</label>
         <input type="text" name="position" onChange={handleChange}></input>
-        <h3>이미지</h3>
+
+        <label htmlFor="이미지 업로드">이미지</label>
         <input
           type="file"
           name="imgUrlList"
           multiple
           accept="image/png , image/jpeg , image/webp"
           onChange={onSelectFile}></input>
+
         <div onClick={getImg} className="company-btn">
           이미지 업로드
         </div>
-        <h3>내용 작성</h3>
+        <label htmlFor="내용 작성">내용 작성</label>
         <input type="textarea" name="content" onChange={handleChange}></input>
-        <h3>마감일</h3>
+
+        <label htmlFor="마감일">마감일</label>
         <input type="text" name="deadline" onChange={handleChange}></input>
+
         <div onClick={openStack} className="company-stack">
           스택
         </div>
