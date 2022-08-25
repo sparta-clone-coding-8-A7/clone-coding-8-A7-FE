@@ -33,7 +33,7 @@ export const __getToggleLike = createAsyncThunk(
         Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.get(
-        dataJi + `/jobPost/${jobPostId}/heart`,
+        dataServer + `/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
