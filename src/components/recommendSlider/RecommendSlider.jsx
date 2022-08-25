@@ -22,7 +22,7 @@ const RecommendSlider = () => {
   const response = async () => {
     try {
       const resp = await axios.get(url, {});
-      console.log(resp.data.results);
+      // console.log(resp.data.results);
       setData(resp.data.results);
     } catch (error) {
       console.log(error);

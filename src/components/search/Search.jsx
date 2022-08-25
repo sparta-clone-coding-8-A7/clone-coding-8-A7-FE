@@ -34,15 +34,13 @@ const Search = ({ searchBar, setSearchBar }) => {
         // {
         // },
       );
-      console.log(resp.data.data);
-
-      setResult(resp.data)
-      if (resp.data.data.length === 0){
-        console.log("검색 없음 결과")
-        navigates("/searchpage",{state:result})
-      }else{
-        navigates("/searchpage",{state:result})
-
+      // console.log(resp.data.data);
+      setResult(resp.data);
+      if (resp.data.data.length === 0) {
+        // console.log("검색 없음 결과");
+        navigates("/searchpage", { state: null });
+      } else {
+        navigates("/searchpage", { state: result });
       }
     } catch (error) {
       console.log(error);

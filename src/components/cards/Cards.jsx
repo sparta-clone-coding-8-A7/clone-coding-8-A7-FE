@@ -11,9 +11,9 @@ import "./Cards.scss";
     //     }
     // },[])
 
-
 const Cards = ({btnOn,setBtnOn}) => {
   const navigate = useNavigate()
+
   let auth = localStorage.getItem("authorization");
   let token1 = localStorage.getItem("refreshtoken");
 
@@ -53,7 +53,7 @@ const Cards = ({btnOn,setBtnOn}) => {
       setData((prev) => [...prev, ...dataRef.current, ...newResp]); // 0  12  24  36
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
     }
   };
@@ -76,7 +76,7 @@ const Cards = ({btnOn,setBtnOn}) => {
           // "RefreshToken":token1
         },
       });
-      console.log([resp.data.data]);
+      // console.log([resp.data.data]);
 
       const newResp = Object.keys(resp.data.data).map(
         (item) => resp.data.data[item]
@@ -84,7 +84,7 @@ const Cards = ({btnOn,setBtnOn}) => {
 
       setData((prev) => [...prev, ...dataRef.current, ...newResp]);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return error;
     }
   };

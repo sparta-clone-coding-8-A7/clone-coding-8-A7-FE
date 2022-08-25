@@ -90,7 +90,7 @@ export const __getCompanyDetail = createAsyncThunk(
         {},
         { headers: headers }
       );
-      console.log(response);
+      // console.log(response);
       return thunkAPI.fulfillWithValue(response.data.data);
       // return thunkAPI.fulfillWithValue(response.data.id);
     } catch (error) {
