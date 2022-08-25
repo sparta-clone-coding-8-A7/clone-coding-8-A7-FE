@@ -36,9 +36,8 @@ const Search = ({ searchBar, setSearchBar }) => {
       setResult(resp.data)
       if (resp.data.data.length === 0){
         console.log("검색 없음 결과")
-        navigates("/searchpage",{state:null})
+        navigates("/searchpage",{state:result})
       }else{
-        
         navigates("/searchpage",{state:result})
       }
       

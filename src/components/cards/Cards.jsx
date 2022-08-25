@@ -1,18 +1,26 @@
 // eslint-disable-next-line
 
-import { useEffect, useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState, useRef } from "react"
 import axios from "axios";
+import { useLocation ,useNavigate} from 'react-router-dom'
 import "./Cards.scss";
+    // useEffect(()=>{
+    //     if(location.state !== ""){
+    //         setData(location.state)
+    //         navigate("/searchpage",{state:data})
+    //     }
+    // },[])
 
-const Cards = () => {
+const Cards = ({btnOn,setBtnOn}) => {
+  const navigate = useNavigate()
   let auth = localStorage.getItem("authorization");
   let token1 = localStorage.getItem("refreshtoken");
 
   const dataServer = process.env.REACT_APP_DATA;
-
   const location = useLocation();
-  const { state } = location; // 검색후 메인은 무한 그냥 메인은 false
+  console.log(location.state)
+  // navigate("/searchpage",{state:data})
+
   const [infinite, setInfinite] = useState(false); // 검색후 메인은 무한 그냥 메인은 false
   const [data, setData] = useState("");
   const [page, setPage] = useState(1);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CompanyWrite.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { type } from "@testing-library/user-event/dist/type";
 
 const CompanyWrite = () => {
   const dataServer = process.env.REACT_APP_DATA;
@@ -13,10 +14,13 @@ const CompanyWrite = () => {
   const [stackCheck, setStackCheck] = useState(false);
   const [groupCheck1, setGroupCheck1] = useState(false);
   const [groupCheck2, setGroupCheck2] = useState(false);
-  const [gotStack, setGotStack] = useState([]);
+  const [gotStack, setGotStack] = useState("");
   const [gotGroup1, setGotGroup1] = useState("");
   const [gotGroup2, setGotGroup2] = useState("");
   const [imageList, setImageList] = useState("");
+  
+  const [list1,setList1] = useState([])
+  const [fakeList,setFakeList1] = useState([])
 
   const navigate = useNavigate();
   let auth = localStorage.getItem("authorization");
@@ -61,6 +65,7 @@ const CompanyWrite = () => {
           RefreshToken: token1,
         },
       });
+      
       setImageList(repo.data.data);
     } catch (error) {
       console.log(error);
@@ -124,11 +129,21 @@ const CompanyWrite = () => {
       alert("내용을 모두 입력해주세요.");
     }
     const formData = new FormData();
+    
+    // const list1 = Object.values(imageList)
+    // console.log("확인",typeof(list1))
+    // for (let i = 0; i < imageList.length; i++) {
+    //   setList1((prev)=>[...prev,imageList[i]])
+    // }
+    let list1 = new Array
+    for (let i = 0; i < gotStack.length; i++) {
+      formData.append("stacks", gotStack[i]);
+    }    
     formData.append("position", details.position);
     formData.append("content", details.content);
     formData.append("imgUrlList", imageList);
     formData.append("deadline", details.deadline);
-    formData.append("stack", gotStack);
+    formData.append("stacks", gotStack);
     formData.append("jobGroupId", gotGroup1);
     formData.append("jobDetailId", gotGroup2);
     try {
@@ -136,8 +151,8 @@ const CompanyWrite = () => {
         // 채용공고 올리기
         headers: {
           "Content-Type": "application/json",
-          Authorization: auth,
-          RefreshToken: token1,
+          "Authorization": auth,
+          "RefreshToken": token1,
         },
       });
     } catch (error) {
@@ -156,7 +171,6 @@ const CompanyWrite = () => {
   const handleStack = (id) => {
     // 스택 쌓기
     setGotStack((prev) => [...prev, id]);
-    // setGotStack((prev)=>[...prev,e.target.textContent])
   };
   const handleGroup = (id) => {
     // 그룹 1

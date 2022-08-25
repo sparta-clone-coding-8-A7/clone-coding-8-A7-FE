@@ -11,10 +11,9 @@ const SearchPage = () => {
     console.log(location.state)
     
     useEffect(()=>{
-        if(location.state !==""){
+        if(location.state !== ""){
             setData(location.state)
             navigate("/searchpage",{state:data})
-            console.log("넣음")
         }
     },[])
   return (
