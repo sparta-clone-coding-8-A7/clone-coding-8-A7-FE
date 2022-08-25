@@ -4,7 +4,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const dataServer = process.env.REACT_APP_DATA;
-// const dataJi = process.env.REACT_APP_JI;
 
 const initialState = {
   user: {},
@@ -16,23 +15,28 @@ const initialState = {
   error: null,
 };
 
+const Refreshtoken = localStorage.getItem("refreshtoken");
+const Authorization = localStorage.getItem("authorization");
+
 export const __getToggleLike = createAsyncThunk(
   "like/__getToggleLike",
   async (payload, thunkAPI) => {
     try {
       const jobPostId = payload;
       // console.log(payload);
-      const id = localStorage.getItem("id");
-      // console.log(id);
+      // const memberId = localStorage.getItem("id");
+      // console.log(memberId);
       const headers = {
         "Content-Type": "application/json",
+        Authorization: `${Authorization}`,
+        Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.get(
-        dataServer + `/jobPost/${jobPostId}/heart?id=${id}`,
+        dataServer + `/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
-      // console.log(response.data.data);
+      console.log(response.data.data);
       return thunkAPI.fulfillWithValue(response.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -46,8 +50,8 @@ export const __toggleLike = createAsyncThunk(
     try {
       const jobPostId = payload;
       // console.log(payload);
-      const Refreshtoken = localStorage.getItem("refreshtoken");
-      const Authorization = localStorage.getItem("authorization");
+      // const Refreshtoken = localStorage.getItem("refreshtoken");
+      // const Authorization = localStorage.getItem("authorization");
       const headers = {
         "Content-Type": "application/json",
         Authorization: `${Authorization}`,
@@ -73,8 +77,8 @@ export const __getCompanyDetail = createAsyncThunk(
     try {
       const jobPostId = payload;
       // console.log(payload);
-      const Refreshtoken = localStorage.getItem("refreshtoken");
-      const Authorization = localStorage.getItem("authorization");
+      // const Refreshtoken = localStorage.getItem("refreshtoken");
+      // const Authorization = localStorage.getItem("authorization");
 
       const headers = {
         "Content-Type": "application/json",

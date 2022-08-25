@@ -6,13 +6,15 @@ import axios from "axios";
 import Header from "../header/Header";
 
 const KakaoLogin = () => {
+  const dataServer = process.env.REACT_APP_DATA;
+
   const location = useLocation();
   const navigate = useNavigate();
   const kakaoCode = location.search.split("=")[1];
   const postCode = async () => {
     try {
       const response = await axios.get(
-        `http://54.180.112.137:9990/api/user/login?code=${kakaoCode}`,
+        dataServer + `/user/login?code=${kakaoCode}`,
         {
           // 백엔드 보내기.
         }
