@@ -54,7 +54,7 @@ const Cards = () => {
       setData((prev) => [
         ...prev,
         ...dataRef.current,
-        // ...resp.data.data.jobPostResponseDto,
+        ...resp.data.data.jobPostResponseDto,
       ]); // 0  12  24  36
       setLoading(false);
     } catch (error) {
@@ -90,7 +90,7 @@ const Cards = () => {
       setData((prev) => [
         ...prev,
         ...dataRef.current,
-        // ...resp.data.data.jobPostResponseDto,
+        ...resp.data.data.jobPostResponseDto,
       ]);
     } catch (error) {
       console.log(error);
