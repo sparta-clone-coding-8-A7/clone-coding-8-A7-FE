@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import exImg from "../../assets/bookshelf.png";
+// import exImg from "../../assets/bookshelf.png";
 import axios from "axios";
 import "./Cards.scss";
 
