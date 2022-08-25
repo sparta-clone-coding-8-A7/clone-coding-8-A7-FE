@@ -3,19 +3,18 @@ import axios from "axios";
 // axios.defaults.baseURL = process.env.REACT_APP_HOST;
 // axios.defaults.baseURL = "https://pokeapi.co/api/v2/ability/?limit=20&offset=20"
 
-let pokemon = "https://pokeapi.co/api/v2/ability/?limit=20&offset=20"
+let pokemon = "https://pokeapi.co/api/v2/ability/?limit=20&offset=20";
 
 export const getTest = async () => {
-    try{
-        const resp = await axios.get(pokemon,{
-    })
-    console.log(resp.data)
-    return resp.data
-    }catch(error){
-        console.log(error);
-        return error
-    }
-}
+  try {
+    const resp = await axios.get(pokemon, {});
+    // console.log(resp.data)
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
 
 // export const getCard = async () => {
 //     let lastpostId = 1
@@ -25,6 +24,6 @@ export const getTest = async () => {
 //     })
 //     console.log(resp.data)
 //     }catch(error){
-//         console.log(error);      
+//         console.log(error);
 //     }
 // }

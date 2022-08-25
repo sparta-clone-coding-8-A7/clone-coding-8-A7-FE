@@ -14,7 +14,7 @@ const CompanyDetailCard = () => {
 
   const companies = useSelector((state) => state.jobDetailSlice.companyDetail);
   // const success = useSelector((state) => state.jobDetailSlice.success);
-  console.log(companies);
+  // console.log(companies);
   // console.log(success);
 
   const dispatch = useDispatch();
