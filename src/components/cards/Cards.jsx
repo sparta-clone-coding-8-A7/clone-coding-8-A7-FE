@@ -7,8 +7,9 @@ import axios from "axios";
 import "./Cards.scss";
 
 const Cards = () => {
-  // let auth = localStorage.getItem("authorization")
-  // let token1 = localStorage.getItem("refreshtoken")
+  let auth = localStorage.getItem("authorization");
+  let token1 = localStorage.getItem("refreshtoken");
+
   const location = useLocation();
   const { state } = location; // 검색후 메인은 무한 그냥 메인은 false
   const [infinite, setInfinite] = useState(false); // 검색후 메인은 무한 그냥 메인은 false
@@ -42,20 +43,19 @@ const Cards = () => {
     //     .catch((error) => console.log("error:", error));
     try {
       const resp = await axios.get(
-        `http://54.180.112.137:9990/api/jobPost?size=7`,
+        `http://54.180.112.137:9990/api/jobPost?size=8`,
         {
           headers: {
             "Content-Type": "application/json",
-            // "Authorization":auth,
-            // "RefreshToken":token1
+            // Authorization: auth,
+            // RefreshToken: token1,
           },
         }
       );
-      setData((prev) => [
-        ...prev,
-        ...dataRef.current,
-        // ...resp.data.data.jobPostResponseDto,
-      ]); // 0  12  24  36
+      const newResp = Object.keys(resp.data.data).map(
+        (item) => resp.data.data[item]
+      );
+      setData((prev) => [...prev, ...dataRef.current, ...newResp]); // 0  12  24  36
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ const Cards = () => {
   const loadingData2 = async () => {
     try {
       const resp = await axios.get(
-        `http://54.180.112.137:9990/api/jobPost?size=7`,
+        `http://54.180.112.137:9990/api/jobPost?size=8`,
         {
           // 메인 초기 데이터
           headers: {
@@ -87,11 +87,12 @@ const Cards = () => {
       );
       console.log([resp.data.data]);
 
-      setData((prev) => [
-        ...prev,
-        ...dataRef.current,
-        // ...resp.data.data.jobPostResponseDto,
-      ]);
+      const newResp = Object.keys(resp.data.data).map(
+        (item) => resp.data.data[item]
+      );
+      console.log(...newResp);
+
+      setData((prev) => [...prev, ...dataRef.current, ...newResp]);
     } catch (error) {
       console.log(error);
       return error;
@@ -120,13 +121,21 @@ const Cards = () => {
       {data &&
         data.map((user, index) => {
           return (
-            <a key={index} href={`/jobpost/${user.id}`} className="card-item">
+            <a
+              key={index}
+              href={`/jobpost/${user.jobPostResponseDto.id}`}
+              className="card-item">
               <div className="card-item-list">
-                <img src={user.imgUrl} alt="imag"></img>
-                <div className="card-title">{user.position}</div>
-                <div className="card-company">{user.name}</div>
-                <div className="company-region">{user.location}</div>
-                {/* <div className='company-pay'>{}</div> */}
+                <img src={user.jobPostResponseDto.imgUrl} alt="images"></img>
+                <div className="card-title">
+                  {user.jobPostResponseDto.position}
+                </div>
+                <div className="card-company">
+                  {user.jobPostResponseDto.name}
+                </div>
+                <div className="company-region">
+                  {user.jobPostResponseDto.location}
+                </div>
               </div>
             </a>
           );
