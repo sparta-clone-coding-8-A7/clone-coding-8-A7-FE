@@ -17,6 +17,7 @@ const SearchPage = () => {
       // console.log("넣음")
     }
   }, []);
+  
   return (
     <div>
       <Header></Header>
