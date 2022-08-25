@@ -44,7 +44,7 @@ const CompanyWrite = () => {
         const formData = new FormData()
         // formData.append("multipartFile",imageStorage)
         for (let i = 0; i<imageStorage.length; i++){
-            formData.append("multipartFile",imageStorage[i])
+          formData.append("multipartFile",imageStorage[i])
         }
         try{
             const repo = await axios.post(`http://54.180.112.137:9990/s3/file`,formData,{

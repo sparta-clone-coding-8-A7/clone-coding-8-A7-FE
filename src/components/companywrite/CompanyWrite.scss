@@ -28,8 +28,12 @@
     }   
 }
 .company-btn{
-  background-color: aqua;
+  background-color: tomato;
+  height: 30px;
   margin-bottom: 5px;
-  border: 0.5px solid gray;
-  width: 200px;
+  border: none;
+  border-radius: 12px;
+  width: 120px;
+  text-align: center;
+  padding-top: 12px;
 }
