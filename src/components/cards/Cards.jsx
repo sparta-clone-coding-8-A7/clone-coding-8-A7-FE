@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Cards.scss";
 
-const Cards = () => {
+const Cards = (btnOn, setBtnOn) => {
   let auth = localStorage.getItem("authorization");
   let token1 = localStorage.getItem("refreshtoken");
 
