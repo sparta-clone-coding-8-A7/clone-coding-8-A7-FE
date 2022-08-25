@@ -46,7 +46,7 @@ const CompanyDetailCard = () => {
             return (
               <div className="companyDetailCard__Container__stackList" key={i}>
                 <div className="companyDetailCard__Container__stackList__skill">
-                  {company.stackId}
+                  {company.name}
                 </div>
               </div>
             );
