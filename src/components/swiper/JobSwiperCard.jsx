@@ -32,6 +32,8 @@ const JobSwiperCard = () => {
 
   // console.log(companies.imgUrlList);
 
+  const styles = { height: "auto" };
+
   return (
     <>
       <Swiper
@@ -44,7 +46,7 @@ const JobSwiperCard = () => {
         {companies.imgUrlList &&
           companies.imgUrlList.map((image, index) => {
             return (
-              <SwiperSlide className="image" key={index}>
+              <SwiperSlide className="image" key={index} style={styles}>
                 <img src={image.imgUrl} alt="imageSlide" />
               </SwiperSlide>
             );
