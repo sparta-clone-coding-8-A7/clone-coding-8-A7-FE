@@ -16,20 +16,24 @@ const initialState = {
   error: null,
 };
 
+const Refreshtoken = localStorage.getItem("refreshtoken");
+const Authorization = localStorage.getItem("authorization");
+
 export const __getToggleLike = createAsyncThunk(
   "like/__getToggleLike",
   async (payload, thunkAPI) => {
     try {
       const jobPostId = payload;
       // console.log(payload);
-      const memberId = localStorage.getItem("id");
-      console.log(memberId);
+      // const memberId = localStorage.getItem("id");
+      // console.log(memberId);
       const headers = {
         "Content-Type": "application/json",
+        Authorization: `${Authorization}`,
+        Refreshtoken: `${Refreshtoken}`,
       };
       const response = await axios.get(
-        dataServer + `/jobPost/${jobPostId}/heart?id=${memberId}`,
-        // dataJi + `/jobPost/${jobPostId}/heart?id=${memberId}`,
+        dataJi + `/jobPost/${jobPostId}/heart`,
         {},
         { headers: headers }
       );
@@ -47,8 +51,8 @@ export const __toggleLike = createAsyncThunk(
     try {
       const jobPostId = payload;
       // console.log(payload);
-      const Refreshtoken = localStorage.getItem("refreshtoken");
-      const Authorization = localStorage.getItem("authorization");
+      // const Refreshtoken = localStorage.getItem("refreshtoken");
+      // const Authorization = localStorage.getItem("authorization");
       const headers = {
         "Content-Type": "application/json",
         Authorization: `${Authorization}`,
@@ -74,8 +78,8 @@ export const __getCompanyDetail = createAsyncThunk(
     try {
       const jobPostId = payload;
       // console.log(payload);
-      const Refreshtoken = localStorage.getItem("refreshtoken");
-      const Authorization = localStorage.getItem("authorization");
+      // const Refreshtoken = localStorage.getItem("refreshtoken");
+      // const Authorization = localStorage.getItem("authorization");
 
       const headers = {
         "Content-Type": "application/json",
