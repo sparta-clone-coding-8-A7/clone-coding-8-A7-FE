@@ -10,6 +10,8 @@ const Cards = () => {
   let auth = localStorage.getItem("authorization");
   let token1 = localStorage.getItem("refreshtoken");
 
+  const dataServer = process.env.REACT_APP_DATA;
+
   const location = useLocation();
   const { state } = location; // 검색후 메인은 무한 그냥 메인은 false
   const [infinite, setInfinite] = useState(false); // 검색후 메인은 무한 그냥 메인은 false
@@ -41,17 +43,15 @@ const Cards = () => {
     // return response
     //     .then((response) => console.log("response:", response))
     //     .catch((error) => console.log("error:", error));
+
     try {
-      const resp = await axios.get(
-        `http://54.180.112.137:9990/api/jobPost?size=8`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: auth,
-            // RefreshToken: token1,
-          },
-        }
-      );
+      const resp = await axios.get(dataServer + `/jobPost?size=8`, {
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: auth,
+          // RefreshToken: token1,
+        },
+      });
       const newResp = Object.keys(resp.data.data).map(
         (item) => resp.data.data[item]
       );
@@ -74,17 +74,14 @@ const Cards = () => {
   };
   const loadingData2 = async () => {
     try {
-      const resp = await axios.get(
-        `http://54.180.112.137:9990/api/jobPost?size=8`,
-        {
-          // 메인 초기 데이터
-          headers: {
-            "Content-Type": "application/json",
-            // "Authorization":auth,
-            // "RefreshToken":token1
-          },
-        }
-      );
+      const resp = await axios.get(dataServer + `/jobPost?size=8`, {
+        // 메인 초기 데이터
+        headers: {
+          "Content-Type": "application/json",
+          // "Authorization":auth,
+          // "RefreshToken":token1
+        },
+      });
       console.log([resp.data.data]);
 
       const newResp = Object.keys(resp.data.data).map(

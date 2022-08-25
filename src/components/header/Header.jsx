@@ -9,6 +9,8 @@ import Login from "../login/Login";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Header = () => {
+  const dataServer = process.env.REACT_APP_DATA;
+
   const [searchBar, setSearchBar] = useState(false); // 검색창 여닫이
   const [loginUp, setLoginUp] = useState(false); // 로그인 창 여닫이
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const Header = () => {
     let refresh = localStorage.getItem("refreshtoken");
     try {
       await axios.post(
-        `http://54.180.112.137:9990/api/user/logout`,
+        dataServer + `/user/logout`,
         {},
         {
           // 로그아웃
