@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import Slidercard from '../components/slider/Slider'
-import Cards from '../components/cards/Cards'
-import logo from "../assets/magnifi.png"
-import RecommendSlider from '../components/recommendSlider/RecommendSlider'
-import Header from '../components/header/Header'
+// eslint-disable-next-line
+
+import React from "react";
+import Slidercard from "../components/slider/Slider";
+import Cards from "../components/cards/Cards";
+import logo from "../assets/magnifi.png";
+import RecommendSlider from "../components/recommendSlider/RecommendSlider";
+import Header from "../components/header/Header";
 
 const MainPage = () => {
   const BigBtn = () => {
-    return(
+    return (
       <a>
-        <div className='bigbtn'>
-          <img src={logo} alt='돋보기' className='magnifi'></img>
+        <div className="bigbtn">
+          <img src={logo} alt="돋보기" className="magnifi"></img>
           채용 중인 포지션 보러가기
         </div>
       </a>
-    )
-  }
-  
+    );
+  };
+
   return (
-    <div className='mainpage'>
+    <div className="mainpage">
       <Header></Header>
       <Slidercard></Slidercard>
       <BigBtn></BigBtn>
-      <div className='recommend'>
+      <div className="recommend">
         <RecommendSlider></RecommendSlider>
         <Cards></Cards>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;

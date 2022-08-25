@@ -17,10 +17,10 @@ import "./JobSwiperCard.scss";
 
 const JobSwiperCard = () => {
   const companies = useSelector((state) => state.jobDetailSlice.companyDetail);
-  console.log(companies);
+  // console.log(companies);
 
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const dispatch = useDispatch();
 
@@ -30,20 +30,7 @@ const JobSwiperCard = () => {
 
   SwiperCore.use([Navigation, Scrollbar]);
 
-  // const images = [
-  //   {
-  //     image: require("../../assets/random1.png"),
-  //   },
-  //   { image: require("../../assets/random2.png") },
-  //   { image: require("../../assets/random1.png") },
-  //   {
-  //     image: require("../../assets/random1.png"),
-  //   },
-  //   { image: require("../../assets/random2.png") },
-  //   { image: require("../../assets/random1.png") },
-  // ];
-
-  console.log(companies.imgUrlList);
+  // console.log(companies.imgUrlList);
 
   return (
     <>

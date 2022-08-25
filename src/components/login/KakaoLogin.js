@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +11,10 @@ const KakaoLogin = () => {
   const kakaoCode = location.search.split("=")[1];
   const postCode = async () => {
     try {
-      const response = await axios.get(`http://54.180.112.137:9990/api/user/login?code=${kakaoCode}`,{ // 백엔드 보내기.
+      const response = await axios.get(
+        `http://54.180.112.137:9990/api/user/login?code=${kakaoCode}`,
+        {
+          // 백엔드 보내기.
         }
       );
       localStorage.setItem("username", response.data.data.username);

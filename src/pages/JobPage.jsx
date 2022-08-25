@@ -1,4 +1,5 @@
 // eslint-disable-next-line
+
 import React from "react";
 import JobSwiperCard from "../components/swiper/JobSwiperCard";
 import JobResumeCard from "../components/resume/JobResumeCard";
@@ -8,16 +9,18 @@ import Header from "../components/header/Header";
 
 const JobPage = () => {
   return (
-    <div className="jobPage_Container">
+    <>
       <Header></Header>
-      <div className="jobDetailLeft">
-        <JobSwiperCard />
-        <CompanyDetailCard />
+      <div className="jobPage_Container">
+        <div className="jobDetailLeft">
+          <JobSwiperCard />
+          <CompanyDetailCard />
+        </div>
+        <div className="jobDetailRight">
+          <JobResumeCard />
+        </div>
       </div>
-      <div className="jobDetailRight">
-        <JobResumeCard />
-      </div>
-    </div>
+    </>
   );
 };
 

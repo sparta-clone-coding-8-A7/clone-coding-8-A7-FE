@@ -1,15 +1,11 @@
 // eslint-disable-next-line
 
 import React, { useEffect } from "react";
-
 import "./JobDetailLike.scss";
-
 import heart from "../../assets/heart.png";
 import love from "../../assets/love.png";
-
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   __toggleLike,
   __getToggleLike,
@@ -21,20 +17,20 @@ const JobDetailLike = () => {
 
   // post
   const postisLike = useSelector((state) => state.jobDetailSlice.isLike.like);
-  console.log("postlike", postisLike);
+  // console.log("postlike", postisLike);
 
   // post
   const postlikeNumber = useSelector(
     (state) => state.jobDetailSlice.isLike.likeNum
   );
-  console.log("postnumber", postlikeNumber);
+  // console.log("postnumber", postlikeNumber);
 
   // get
   const isNumber = useSelector((state) => state.jobDetailSlice.isNum.likeNum);
-  console.log("isnumber", isNumber);
+  // console.log("isnumber", isNumber);
 
   const isLike = useSelector((state) => state.jobDetailSlice.isNum.like);
-  console.log("isLike", isLike);
+  // console.log("isLike", isLike);
 
   const onisLike = async () => {
     dispatch(__toggleLike(parseInt(id.id)));
