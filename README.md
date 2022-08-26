@@ -70,3 +70,4 @@ https://www.figma.com/file/ytNpjI1KgbgsWK3E4QB3G1/%ED%81%B4%EB%A1%A0%ED%94%84%EB
 - 8/25
 영상 준비 및 마무리
 
+노션 링크 : https://florentine-mastodon-d7d.notion.site/SA-7-8f6e3b2cbae742a7a78bb9c1a50eb745
